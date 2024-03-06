@@ -42,6 +42,11 @@ import Profile from "../screens/Profile";
 import ProfileEdit from "../screens/ProfileEdit";
 
 
+// ของนน
+import Declare from '../screens/Declare.js';
+import ScanScreen from '../screens/ScanScreen';
+
+
 
 // เอาไว้เทสเฉยๆ 
 import ScreenTest from "../screens/ScreenTest";
@@ -78,17 +83,21 @@ const Authen = () => {
                 <Stack.Screen name='AddMyPets' component={AddMyPets} />
                 <Stack.Screen name='ScreenTest' component={ScreenTest} />
                 <Stack.Screen name='ListMyPet' component={ListMyPet} />
+                <Stack.Screen name='LostPetDetails' component={LostPetDetails}  options={{headerShown:false}}  />
 
                 {/* ของเอิน */}
                 <Stack.Screen name='HomePage' component={HomePage} />
 
                 {/* ของอุ้ม */}
                 <Stack.Screen name="Profile" component={Profile} options={{ title: "Profile", headerShown: false,}} />
+                
+                {/* ของนน */}
+                <Stack.Screen name='FindScreen' component={FindScreen} />
+                <Stack.Screen name='ScanScreen' component={ScanScreen} />
 
 
 
             </Stack.Group>
-            <Stack.Screen name='LostPetDetails' component={LostPetDetails}  options={{headerShown:false}} />
         </Stack.Navigator>
     )
 }
@@ -96,17 +105,9 @@ const Authen = () => {
 const ProfileTab = () => {
     return(
         <Stack.Navigator initialRouteName="Profile" screenOptions={{ headerStyle: { backgroundColor: "lightblue" } }}>
-            <Stack.Screen name="Profile" component={Profile} options={{
-                title: "Profile",
-                headerShown: false,
-            }}
-            />
+            <Stack.Screen name="Profile" component={Profile} options={{ title: "Profile", headerShown: false, }} />
 
-            <Stack.Screen name="ProfileEdit" component={ProfileEdit} options={{
-                headerTitle: "Profile Edit",
-                headerTitleAlign: 'center',
-                headerStyle: { backgroundColor: colors.mint }}}
-            />
+            <Stack.Screen name="ProfileEdit" component={ProfileEdit} options={{ headerTitle: "Profile Edit", headerTitleAlign: 'center', headerStyle: { backgroundColor: colors.mint }}}/>
 
             <Stack.Screen name='ListMyPet' component={ListMyPet} options={{headerTitleAlign: 'center',headerStyle: { backgroundColor: colors.mint, }}} />
 
@@ -116,7 +117,7 @@ const ProfileTab = () => {
 
 const HomeTab = () => {
     return(
-        <Stack.Navigator initialRouteName="Profile" screenOptions={{ headerStyle: { backgroundColor: "lightblue" } }}>
+        <Stack.Navigator initialRouteName="HomePage" screenOptions={{ headerStyle: { backgroundColor: "lightblue" } }}>
             <Stack.Screen name='HomePage' component={HomePage} options={{headerShown:false}} />
         </Stack.Navigator>
     )
@@ -125,8 +126,19 @@ const HomeTab = () => {
 
 const NotificationTab = () => {
     return(
-        <Stack.Navigator initialRouteName="Profile" screenOptions={{ headerStyle: { backgroundColor: "lightblue" } }}>
+        <Stack.Navigator initialRouteName="Notification" screenOptions={{ headerStyle: { backgroundColor: "lightblue" }, headerTitleAlign: 'center' }}>
             <Stack.Screen name='Notification' component={Notification} />
+        </Stack.Navigator>
+    )
+}
+
+
+const DeclareTab = () => {
+    return(
+        <Stack.Navigator initialRouteName="Profile" screenOptions={{  headerTitleAlign: 'center', headerStyle: { backgroundColor: colors.mint } }}>
+            <Stack.Screen name='Declare' component={Declare} />
+            <Stack.Screen name='ScanScreen' component={ScanScreen} />
+            <Stack.Screen name='LostPetDetails' component={LostPetDetails}  options={{headerShown:false}}  />
         </Stack.Navigator>
     )
 }
@@ -136,16 +148,19 @@ const NotificationTab = () => {
 
 const Tab = () => { 
     return(
-        <TabStack.Navigator initialRouteName='Profile' screenOptions={{ 
+        <TabStack.Navigator initialRouteName='Home' screenOptions={{ 
             headerShown:false ,
             tabBarActiveTintColor: "#FF724C", 
             tabBarStyle: { backgroundColor: "#bad36d" }, 
             tabBarLabelStyle: { fontSize: 15 },
             tabBarInactiveTintColor: 'gray',
         }}>
-            <TabStack.Screen name='HomeTab' component={HomeTab} options={{ tabBarIcon: ({ color, size }) => {
+            <TabStack.Screen name='Home' component={HomeTab} options={{ tabBarIcon: ({ color, size }) => {
                 return <AntDesign name="home" size={24} color={color} />;  
             },}}  />
+            <TabStack.Screen name='Declare' component={DeclareTab} options={{ tabBarIcon: ({ color, size }) => {
+                return <AntDesign name="home" size={24} color={color} />;  
+            }, }}  />
 
             <TabStack.Screen name='Noti' component={NotificationTab}
                 options={{
@@ -153,9 +168,10 @@ const Tab = () => {
                     // tabBarLabel: "", // หรือใช้ tabBarLabel: undefined,
                 }}
             />
-            <TabStack.Screen name='ProfileTab' component={ProfileTab} options={{ tabBarIcon: ({ color, size }) => {
+            <TabStack.Screen name='Profile' component={ProfileTab} options={{ tabBarIcon: ({ color, size }) => {
                 return <AntDesign name="home" size={24} color={color} />;  
             }, }}  />
+
             
         </TabStack.Navigator>
     )
