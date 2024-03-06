@@ -21,7 +21,7 @@ export default function Signin({ navigation }) {
             <TextInput secureTextEntry={!showPassword}   style={styles.input}  placeholder="รหัสผ่าน"/> 
             <MaterialCommunityIcons name={showPassword ? 'eye' : 'eye-off'} size={22} color="#faaf6b" style={styles.icon} onPress={toggleShowPassword}/> 
         </View> 
-        <TouchableOpacity style={styles.addButton} onPress={()=>{navigation.navigate("Signup")}}>
+        <TouchableOpacity style={styles.addButton} onPress={()=>{navigation.navigate("HomePage")}}>
           <Text style={{ fontSize: 16 }}>เข้าสู่ระบบ</Text>
         </TouchableOpacity>
       </View>

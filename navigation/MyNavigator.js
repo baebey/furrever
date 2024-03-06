@@ -33,7 +33,7 @@ import Notification from "../page/Notification.js";
 
 
 // import ของ เอิน
-// import FeedScreen from "../screens/FeedScreen.js"
+import HomePage from "../screens/HomePage.js"
 
 
 
@@ -45,7 +45,7 @@ import ScreenTest from "../screens/ScreenTest";
 
 const Authen = () => { 
     return(
-        <Stack.Navigator initialRouteName='Signup' screenOptions={{
+        <Stack.Navigator initialRouteName='Signin' screenOptions={{
             headerShown:true, 
             headerTintColor: '#f8f3df',
             headerTitleAlign: 'center', headerStyle: {backgroundColor: '#bad36d'}, headerTitleStyle: {color: '#f8f3df'},
@@ -56,12 +56,16 @@ const Authen = () => {
                 headerLeft: () => <TouchableOpacity onPress={navigation.goBack}><AntDesign style={{marginLeft: 10, }} name="left" size={24} color="black" /></TouchableOpacity>,
                 })}
             >
-                <Stack.Screen name='Signup' component={Signup}  />
+                {/* ของเบ */}
                 <Stack.Screen name='Signin' component={Signin}  />
+                <Stack.Screen name='Signup' component={Signup}  />
                 <Stack.Screen name='Notification' component={Notification} />
+                {/* ของเฟรม */}
                 <Stack.Screen name='AddMyPets' component={AddMyPets} />
                 <Stack.Screen name='ScreenTest' component={ScreenTest} />
                 <Stack.Screen name='ListMyPet' component={ListMyPet} />
+                {/* ของเอิน */}
+                <Stack.Screen name='HomePage' component={HomePage} />
 
             </Stack.Group>
             <Stack.Screen name='LostPetDetails' component={LostPetDetails}  options={{headerShown:false}} />
