@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native';
-import Signin from './page/Signin';
-import Signup from './page/Signup';
-import Notification from './page/Notification';
+import Signin from './screens/Signin';
+import Signup from './screens/Signup';
+import Notification from './screens/Notification';
 
 export default function App() {
   return (
@@ -16,9 +16,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: '#fff',
-    // alignItems: 'center',
-    // justifyContent: 'center',
     marginHorizontal: 30,
     marginTop: 35
   },
