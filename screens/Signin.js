@@ -3,7 +3,7 @@ import { StyleSheet, Text, View , TextInput, TouchableOpacity} from 'react-nativ
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 
 
-export default function Signin() {
+export default function Signin({ navigation }) {
 
     const [showPassword, setShowPassword] = useState(false);
 
@@ -21,7 +21,7 @@ export default function Signin() {
             <TextInput secureTextEntry={!showPassword}   style={styles.input}  placeholder="รหัสผ่าน"/> 
             <MaterialCommunityIcons name={showPassword ? 'eye' : 'eye-off'} size={22} color="#faaf6b" style={styles.icon} onPress={toggleShowPassword}/> 
         </View> 
-        <TouchableOpacity style={styles.addButton}>
+        <TouchableOpacity style={styles.addButton} onPress={()=>{navigation.navigate("Signup")}}>
           <Text style={{ fontSize: 16 }}>เข้าสู่ระบบ</Text>
         </TouchableOpacity>
       </View>
