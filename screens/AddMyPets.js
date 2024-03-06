@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Image, TextInput,} from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Image, TextInput, SafeAreaView, ScrollView, StatusBar} from "react-native";
 import { RadioButton } from 'react-native-paper'; 
 import { Input } from "react-native-elements";
 
@@ -34,8 +34,9 @@ const AddMyPets = ({ route, navigation }) => {
 
 
 return (
-    <View style={styles.container}>
-        
+
+    <SafeAreaView style={styles.container}>
+        <ScrollView style={styles.scrollView}>
         
         {/* ส่วนของรูปภาพสัตว์เลี้ยง */}
         <TouchableOpacity style={[styles.avatar]}>
@@ -141,8 +142,8 @@ return (
         </View>
 
 
-            
-    </View>
+        </ScrollView>
+    </SafeAreaView>
   );
 };
 

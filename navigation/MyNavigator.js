@@ -29,6 +29,12 @@ import ListMyPet from "../screens/ListMyPet";
 // import ของ เบ
 import Signin from "../page/Signin.js";
 import Signup from "../page/Signup.js";
+import Notification from "../page/Notification.js";
+
+
+// import ของ เอิน
+// import FeedScreen from "../screens/FeedScreen.js"
+
 
 
 // เอาไว้เทสเฉยๆ 
@@ -39,7 +45,7 @@ import ScreenTest from "../screens/ScreenTest";
 
 const Authen = () => { 
     return(
-        <Stack.Navigator initialRouteName='Signin' screenOptions={{
+        <Stack.Navigator initialRouteName='Signup' screenOptions={{
             headerShown:true, 
             headerTintColor: '#f8f3df',
             headerTitleAlign: 'center', headerStyle: {backgroundColor: '#bad36d'}, headerTitleStyle: {color: '#f8f3df'},
@@ -50,8 +56,9 @@ const Authen = () => {
                 headerLeft: () => <TouchableOpacity onPress={navigation.goBack}><AntDesign style={{marginLeft: 10, }} name="left" size={24} color="black" /></TouchableOpacity>,
                 })}
             >
-                <Stack.Screen name='Signin' component={Signin}  />
                 <Stack.Screen name='Signup' component={Signup}  />
+                <Stack.Screen name='Signin' component={Signin}  />
+                <Stack.Screen name='Notification' component={Notification} />
                 <Stack.Screen name='AddMyPets' component={AddMyPets} />
                 <Stack.Screen name='ScreenTest' component={ScreenTest} />
                 <Stack.Screen name='ListMyPet' component={ListMyPet} />

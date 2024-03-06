@@ -22,6 +22,16 @@ const screenTest = ({ navigation }) => {
                 <Text >Go to LostPetDetails</Text>
               </TouchableOpacity>
 
+              <Text> </Text>
+              <Text> </Text>
+              <Text> </Text>
+              <Text> </Text>
+              <TouchableOpacity onPress={()=>{navigation.navigate("ListMyPet")}} >
+                <Text >Go to ListMyPet</Text>
+              </TouchableOpacity>
+
+             
+
             </ScrollView>
         </SafeAreaView>
  
