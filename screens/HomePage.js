@@ -38,7 +38,7 @@ const HomePage = () => {
     container: {
       flex: 1,
       // backgroundColor:'red',
-      // top: 30,
+      top: 20, // อยากแก้ ขนาด มาแก้ตรงนี้ 
       
     },
     scrollView: {

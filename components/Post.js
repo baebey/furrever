@@ -47,8 +47,8 @@ const Post = () => {
 
 
     return (
-        <SafeAreaView style={{marginBottom: 100}}>
-            <View style={{ backgroundColor: '#D9D9D9' }}>
+        // <View style={{marginBottom: 100, backgroundColor:'red'}}>
+            <View style={{ backgroundColor: '#D9D9D9', marginBottom: 20 }}>
                 <View>
                 </View>
                 <View>
@@ -99,7 +99,7 @@ const Post = () => {
                     />
                 </View>
             </View>
-        </SafeAreaView>
+        // </View>
     );
 
 

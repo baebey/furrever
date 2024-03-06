@@ -36,7 +36,7 @@ export default function Signup({ navigation }) {
             <TextInput secureTextEntry={!showConfirmPassword}   style={styles.input}  placeholder="ยืนยันรหัสผ่าน"/> 
             <MaterialCommunityIcons name={showConfirmPassword ? 'eye' : 'eye-off'} size={22} color="#faaf6b" style={styles.icon} onPress={toggleShowConfirmPassword}/> 
         </View> 
-        <TouchableOpacity style={styles.addButton} onPress={()=>{navigation.navigate("Signin")}}>
+        <TouchableOpacity style={styles.addButton} onPress={()=>{navigation.navigate("Tab")}}>
           <Text style={{ fontSize: 16 }}>ลงทะเบียน</Text>
         </TouchableOpacity>
       </View>
@@ -44,7 +44,7 @@ export default function Signup({ navigation }) {
       {/* ask */}
       <View style={{flexDirection: 'row', alignSelf: 'center', marginTop: 60, marginBottom: 200}}>
       <Text style={{ fontSize: 15, marginRight: 5,}}>มีบัญชีอยู่แล้ว?</Text>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={()=>{navigation.navigate("Signin")}}>
        <Text style={{ fontSize: 15, color: '#faaf6b', fontWeight: 'bold'}}>เข้าสู่ระบบ</Text>
       </TouchableOpacity>
     </View>
