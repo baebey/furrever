@@ -1,7 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native';
-import Signin from './page/Signin';
-import Signup from './page/Signup';
-import Notification from './page/Notification';
+
 
 
 

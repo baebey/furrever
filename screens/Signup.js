@@ -19,13 +19,13 @@ export default function Signup({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={{flexDirection: 'row'}}>
-        <Text style={{color: 'black', fontSize: 28, marginTop: 100}}>สมัคร</Text>
-        <Text style={{color: 'black', fontSize: 28, marginTop: 140, marginLeft: -65}}>บัญชีผู้ใช้</Text>
+        <Text style={{color: 'black', fontSize: 28, marginTop: 80}}>สมัคร</Text>
+        <Text style={{color: 'black', fontSize: 28, marginTop: 120, marginLeft: -65}}>บัญชีผู้ใช้</Text>
       </View>
       
 
       {/* form */}
-      <View style={{marginTop: 90,}}>
+      <View style={{marginTop: 50,}}>
       <TextInput style={{borderWidth: 1, borderRadius: 50, height: 45, borderColor: '#faaf6b', padding: 12, fontSize: 16, marginBottom: 20, }} placeholder="ชื่อผู้ใช้"/>
         <TextInput style={{borderWidth: 1, borderRadius: 50, height: 45, borderColor: '#faaf6b', padding: 12, fontSize: 16, marginBottom: 20, }} placeholder="อีเมลล์"  keyboardType="email-address"/>
          <View style={styles.password}> 

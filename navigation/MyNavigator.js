@@ -28,9 +28,9 @@ import ListMyPet from "../screens/ListMyPet";
 
 
 // import ของ เบ
-import Signin from "../page/Signin.js";
-import Signup from "../page/Signup.js";
-import Notification from "../page/Notification.js";
+import Signin from "../screens/Signin.js";
+import Signup from "../screens/Signup.js";
+import Notification from "../screens/Notification.js";
 
 
 // import ของ เอิน
@@ -45,6 +45,7 @@ import ProfileEdit from "../screens/ProfileEdit";
 // ของนน
 import Declare from '../screens/Declare.js';
 import ScanScreen from '../screens/ScanScreen';
+import FindScreen from '../screens/FindScreen.js';
 
 
 
