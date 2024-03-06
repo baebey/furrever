@@ -7,15 +7,10 @@ import Test from "./screens/Test";
 
 export default function App() {
   return (
-    <Test />
-    // <NewHouse />
+    // <Test />
+    <NewHouse />
     // <PetLost />
     // <UploadPets />
-
-    // <View style={styles.container}>
-    //   <Text>Open up App.js to start working on your app!</Text>
-    //   <StatusBar style="auto" />
-    // </View>
   );
 }
 

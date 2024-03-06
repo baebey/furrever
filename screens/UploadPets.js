@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
   Text,
@@ -7,17 +6,15 @@ import {
   TouchableOpacity,
   Image,
   TextInput,
-  Pressable,
   Platform,
 } from "react-native";
-import BtnNewHouse from "../components/BtnNewHouse";
 import { SelectList } from "react-native-dropdown-select-list";
 import * as ImagePicker from "expo-image-picker";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
 export default function UploadPets() {
   // Dropdown
-  const [selected, setSelected] = React.useState("");
+  const [selected, setSelected] = useState("");
 
   const data = [
     { key: "1", value: "Kaitoon" },
@@ -37,124 +34,113 @@ export default function UploadPets() {
     });
 
     // console.log(result);
-    // console.log(image);
+    console.log(image);
 
     if (!result.canceled) {
       setImage(result.assets[0].uri);
     }
   };
-  //TextInput
-  const [textPlace, onChangeTextPlace] = React.useState("");
-  const [textDay, setTextDay] = React.useState("");
-  const [date, setDate] = React.useState(new Date());
-  const [showPicker, setShowPicker] = useState(false);
-  const toggleDatepicker = () => {
-    setShowPicker(!showPicker);
-  };
-  const onChangeDate = ({ type }, selectedDate) => {
-    if (type == "set") {
-      const currentDate = selectedDate;
-      setDate(currentDate);
 
-      if (Platform.OS === "android") {
-        toggleDatepicker();
-        setTextDay(currentDate.toDateString());
-      }
-    } else {
-      toggleDatepicker();
+  // TextInput
+  const [textPlace, onChangeTextPlace] = useState("");
+  const [textDay, setTextDay] = useState("");
+  const [textTime, setTextTime] = useState("");
+
+  // DateTimePicker
+  const [date, setDate] = useState(new Date());
+  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [showTimePicker, setShowTimePicker] = useState(false);
+
+  const handleDateChange = (event, selectedDate) => {
+    setShowDatePicker(Platform.OS === "ios");
+    if (selectedDate) {
+      setDate(selectedDate);
+      setTextDay(selectedDate.toDateString());
     }
   };
-  const [textTime, setTextTime] = React.useState("");
-  const [time, setTime] = React.useState(new Date());
-  const [showPickerTime, setShowPickerTime] = useState(false);
-  const toggleDatepickerTime = () => {
-    setShowPicker(!showPicker);
-  };
-  const onChangeTime = ({ type }, selectedTime) => {
-    if (type == "set") {
-      const currentTime = selectedTime;
-      setTime(currentTime);
 
-      if (Platform.OS === "android") {
-        toggleDatepickerTime();
-        setTextDay(currentTime.toDateString());
-      }
-    } else {
-      toggleDatepickerTime();
+  const handleTimeChange = (event, selectedTime) => {
+    setShowTimePicker(Platform.OS === "ios");
+    if (selectedTime) {
+      setDate(selectedTime);
+      setTextTime(selectedTime.toLocaleTimeString());
     }
   };
 
   return (
     <View style={styles.container}>
-      <View>
+      <View style={styles.LocationPicker}>
         <SelectList
           setSelected={setSelected}
           data={data}
           placeholder="เลือกสัตว์เลี้ยงของคุณ"
         />
       </View>
-      <View>
-        {image && <Image source={{ uri: image }} style={styles.Image} />}
-        <TouchableOpacity style={styles.ImagePicker} onPress={pickImage}>
-          <Text>เลือกรูปภาพ</Text>
+      <View style={styles.picker}>
+        <TouchableOpacity style={styles.ImagePick} onPress={pickImage}>
+          {/* <Text>เลือกรูปภาพ</Text> */}
+          {image && <Image source={{ uri: image }} style={styles.Image} />}
         </TouchableOpacity>
       </View>
       <View>
-        <View>
-          <Text>สถานที่ที่คาดว่าหาย</Text>
-          <TextInput
-            style={styles.input}
-            onChangeText={onChangeTextPlace}
-            value={textPlace}
+        <View style={styles.textInput}>
+          <Image
+            style={styles.iconTextInput}
+            source={require("../assets/mapMark.png")}
           />
+          <Text>สถานที่ที่คาดว่าหาย</Text>
         </View>
+        <TextInput
+          style={styles.input}
+          onChangeText={onChangeTextPlace}
+          value={textPlace}
+        />
 
-        <View>
+        <View style={styles.textInput}>
+          <Image
+            style={styles.iconTextInput}
+            source={require("../assets/dayMark.png")}
+          />
           <Text>วันที่ที่หาย</Text>
-          {showPicker && (
-            <DateTimePicker
-              mode="date"
-              display="spinner"
-              value={date}
-              onChange={onChangeDate}
-              style={styles.datePicker}
-            />
-          )}
-
-          {!showPicker && (
-            <Pressable onPress={toggleDatepicker}>
-              <TextInput
-                style={styles.input}
-                onChangeText={setTextDay}
-                value={textDay}
-                editable={false}
-              />
-            </Pressable>
-          )}
         </View>
+        <TouchableOpacity onPress={() => setShowDatePicker(true)}>
+          <TextInput style={styles.input} value={textDay} editable={false} />
+        </TouchableOpacity>
+        {showDatePicker && (
+          <DateTimePicker
+            value={date}
+            mode="date"
+            display="default"
+            onChange={handleDateChange}
+          />
+        )}
 
-        <View>
+        <View style={styles.textInput}>
+          <Image
+            style={styles.iconTextInput}
+            source={require("../assets/timeMark.png")}
+          />
           <Text>เวลาที่หาย</Text>
-          {showPickerTime && (
-            <DateTimePicker
-              mode="time"
-              display="spinner"
-              value={date}
-              onChange={onChangeTime}
-              style={styles.datePicker}
-            />
-          )}
-          {!showPicker && (
-            <Pressable onPress={toggleDatepickerTime}>
-              <TextInput
-                style={styles.input}
-                onChangeText={setTextTime}
-                value={textDay}
-                editable={false}
-              />
-            </Pressable>
-          )}
         </View>
+        <TouchableOpacity onPress={() => setShowTimePicker(true)}>
+          <TextInput style={styles.input} value={textTime} editable={false} />
+        </TouchableOpacity>
+        {showTimePicker && (
+          <DateTimePicker
+            value={date}
+            mode="time"
+            display="default"
+            onChange={handleTimeChange}
+          />
+        )}
+      </View>
+      <View style={styles.buttonPost}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => console.log("Sent")}
+        >
+          <Text>Post</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -164,20 +150,26 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    // alignItems: "center",
-    // justifyContent: "center",
     paddingHorizontal: 25,
     marginTop: 50,
   },
-  ImagePicker: {
-    flex: 1,
+  imageContainer: {
+    position: "relative",
+  },
+  LocationPicker: {
+    borderRadius: 15,
+    backgroundColor: "#E2CC9B",
+  },
+  picker: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 25,
+  },
+  ImagePick: {
     width: 200,
     height: 180,
-    borderRadius: 10,
-    borderWidth: 1.5,
-    backgroundColor: "red",
-    alignItems: "center",
-    justifyContent: "center",
+    marginTop: 30,
+    backgroundColor: "#E2CC9B",
   },
   Image: {
     width: 200,
@@ -188,9 +180,29 @@ const styles = StyleSheet.create({
     margin: 12,
     borderWidth: 1,
     padding: 10,
+    backgroundColor: "#E2CC9B",
+    borderRadius: 15,
   },
-  datePicker: {
-    height: 150,
-    marginTop: -10,
+  textInput: {
+    flexDirection: "row",
+    marginLeft: 12,
+    alignItems: "center",
+  },
+  iconTextInput: {
+    marginRight: 5,
+  },
+  buttonPost: {
+    marginTop: 50,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  button: {
+    justifyContent: "center",
+    alignItems: "center",
+    width: 70,
+    height: 40,
+    borderRadius: 10,
+    backgroundColor: "#E2CC9B",
+    borderWidth: 1,
   },
 });

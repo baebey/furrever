@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { StatusBar } from "expo-status-bar";
+import React from "react";
 import { SelectList } from "react-native-dropdown-select-list";
-import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
-import BtnNewHouse from "../components/BtnNewHouse";
+import { StyleSheet, View } from "react-native";
+import BtnLostPet from "../components/BtnLostPet";
+import PostLostPet from "../components/postLostPet";
 
 export default function NewHouse() {
   // Dropdown
@@ -15,7 +15,7 @@ export default function NewHouse() {
   return (
     <View style={styles.container}>
       {/* <StatusBar style="auto" /> */}
-      <View>
+      <View style={styles.LocationPicker}>
         <SelectList
           setSelected={setSelected}
           data={data}
@@ -23,12 +23,38 @@ export default function NewHouse() {
         />
       </View>
       <View style={styles.AllBtn}>
-        <BtnNewHouse
+        <BtnLostPet
           name="ทั้งหมด"
           image={require("../assets/AllTypeBtn.png")}
         />
-        <BtnNewHouse name="แมว" image={require("../assets/CatTypeBtn.png")} />
-        <BtnNewHouse name="สุนัข" image={require("../assets/DogTypeBtn.png")} />
+        <BtnLostPet name="แมว" image={require("../assets/CatTypeBtn.png")} />
+        <BtnLostPet name="สุนัข" image={require("../assets/DogTypeBtn.png")} />
+      </View>
+      <View style={styles.postLost}>
+        <PostLostPet
+          name="Mon"
+          year="4"
+          type="สุนัข"
+          sex="เพศผู้"
+          locate="กรุงเทพ"
+          tel="000-11111111"
+        />
+        <PostLostPet
+          name="Tom"
+          year="4"
+          type="สุนัข"
+          sex="เพศผู้"
+          locate="กรุงเทพ"
+          tel="000-11111111"
+        />
+        <PostLostPet
+          name="Jerrie"
+          year="2"
+          type="สุนัข"
+          sex="เพศผู้"
+          locate="กรุงเทพ"
+          tel="000-11111111"
+        />
       </View>
     </View>
   );
@@ -36,21 +62,20 @@ export default function NewHouse() {
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
     paddingHorizontal: 25,
     marginTop: 50,
     backgroundColor: "#fff",
-    // alignItems: "center",
-    // justifyContent: "center",
   },
   AllBtn: {
     marginTop: 20,
     flexDirection: "row",
     justifyContent: "center",
   },
-  //   Btn: { alignContent: "center" },
-  //   ImageIconStyle: {
-  //     width: 80,
-  //     height: 80,
-  //   },
+  LocationPicker: {
+    borderRadius: 15,
+    backgroundColor: "#E2CC9B",
+  },
+  postLost: {
+    marginTop: 10,
+  },
 });

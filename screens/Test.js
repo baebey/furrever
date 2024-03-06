@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
   Text,
@@ -10,7 +9,6 @@ import {
   Pressable,
   Platform,
 } from "react-native";
-import BtnNewHouse from "../components/BtnNewHouse";
 import { SelectList } from "react-native-dropdown-select-list";
 import * as ImagePicker from "expo-image-picker";
 import DateTimePicker from "@react-native-community/datetimepicker";
@@ -37,7 +35,7 @@ export default function UploadPets() {
     });
 
     // console.log(result);
-    // console.log(image);
+    console.log(image);
 
     if (!result.canceled) {
       setImage(result.assets[0].uri);
@@ -93,10 +91,10 @@ export default function UploadPets() {
           placeholder="เลือกสัตว์เลี้ยงของคุณ"
         />
       </View>
-      <View>
-        {image && <Image source={{ uri: image }} style={styles.Image} />}
-        <TouchableOpacity style={styles.ImagePicker} onPress={pickImage}>
-          <Text>เลือกรูปภาพ</Text>
+      <View style={styles.picker}>
+        <TouchableOpacity style={styles.ImagePick} onPress={pickImage}>
+          {/* <Text>เลือกรูปภาพ</Text> */}
+          {image && <Image source={{ uri: image }} style={styles.Image} />}
         </TouchableOpacity>
       </View>
       <View>
@@ -164,20 +162,19 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    // alignItems: "center",
-    // justifyContent: "center",
     paddingHorizontal: 25,
     marginTop: 50,
   },
-  ImagePicker: {
-    flex: 1,
+  picker: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 25,
+  },
+  ImagePick: {
     width: 200,
     height: 180,
-    borderRadius: 10,
-    borderWidth: 1.5,
-    backgroundColor: "red",
-    alignItems: "center",
-    justifyContent: "center",
+    marginTop: 30,
+    backgroundColor: "gray",
   },
   Image: {
     width: 200,
