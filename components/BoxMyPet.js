@@ -7,7 +7,7 @@ import { AntDesign } from '@expo/vector-icons';
 
 
 // Component
-const BoxMyPet = (props) => {
+const Box_MyPet = (props) => {
     const navigation = props.navigation;
 
 
@@ -88,4 +88,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default BoxMyPet
+export default Box_MyPet

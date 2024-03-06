@@ -3,6 +3,9 @@ import {
   View,
   Text,
   StyleSheet,
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
   Button,
   Image,
   TouchableOpacity,
@@ -11,52 +14,62 @@ import Icon from "react-native-vector-icons/FontAwesome";
 
 const Profile = ({ navigation }) => {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.header}></View>
-      <Image
-        source={{
-          uri: "https://pbs.twimg.com/media/F9vfIVQbcAAEcFg?format=jpg&name=small",
-        }}
-        style={styles.avatar}
-      />
-      <View style={styles.txt}>
-        <Text style={{ fontSize: 30, alignSelf: "center" }}>อยากเป้นหมา29</Text>
-        <Text style={{ fontSize: 15, color: "grey", alignSelf: "center", paddingTop: 10, }}>
-          0929292929
-        </Text>
-        <Text style={{ fontSize: 15, color: "grey", alignSelf: "center", paddingTop: 10, }}>
-          ที่นี่ที่ไหน, ใช่ในใจเทอรึป่าว
-        </Text>
+      
+      <View style={{ paddingBottom: '3%'}}>
+          <Image source={{ uri: "https://hips.hearstapps.com/hmg-prod/images/russian-blue-royalty-free-image-1658451809.jpg",}} style={styles.avatar} />
+          {/* <View style={{backgroundColor:'cyan' ,}}> */}
+            <View style={styles.txt}>
+              <Text style={{ fontSize: 30, alignSelf: "center" }}>Cat</Text>
+              <Text style={{ fontSize: 15, color: "grey", alignSelf: "center", paddingTop: 10, }}>
+                0929292929
+              </Text>
+              <Text style={{ fontSize: 15, color: "grey", alignSelf: "center", paddingTop: 10, }}>
+                Meow
+              </Text>
+            </View>
+        {/* </View> */}
       </View>
+          
+        
+        
+        <View style={{}}>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("ProfileEdit", { prev: "Profile", id: 25 });
+              }}
+              style={styles.btn}
+            >
+              <Text style={styles.btninner}>แก้ไขโปรไฟล์</Text>
+              <Icon name="angle-right" size={20} color="white" />
+            </TouchableOpacity>
 
-      <TouchableOpacity
-        onPress={() => {
-          navigation.navigate("ProfileEdit", { prev: "Profile", id: 25 });
-        }}
-        style={styles.btn}
-      >
-        <Text style={styles.btninner}>แก้ไขโปรไฟล์</Text>
-        <Icon name="angle-right" size={20} color="white" />
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => {
-          navigation.navigate("ProfileEdit", { prev: "Profile", id: 25 });
-        }}
-        style={styles.btn}
-      >
-        <Text style={styles.btninner}>สัตว์เลี้ยงของฉัน</Text>
-        <Icon name="angle-right" size={20} color="white" />
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => {
-          navigation.navigate("ProfileEdit", { prev: "Profile", id: 25 });
-        }}
-        style={styles.btn}
-      >
-        <Text style={styles.btninner}>ออกจากระบบ</Text>
-        <Icon name="angle-right" size={20} color="white" />
-      </TouchableOpacity>
-    </View>
+
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("ListMyPet", { prev: "Profile", id: 25 });
+              }}
+              style={styles.btn}
+            >
+              <Text style={styles.btninner}>สัตว์เลี้ยงของฉัน</Text>
+              <Icon name="angle-right" size={20} color="white" />
+            </TouchableOpacity>
+
+
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Authen", { prev: "Profile", id: 25 });
+              }}
+              style={styles.btn}
+            >
+              <Text style={styles.btninner}>ออกจากระบบ</Text>
+              <Icon name="angle-right" size={20} color="white" />
+            </TouchableOpacity>
+        </View>
+        
+      
+    </SafeAreaView>
   );
 };
 
@@ -71,6 +84,7 @@ const colors = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    
   },
   header: {
     backgroundColor: colors.mint,
@@ -82,26 +96,30 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     alignSelf: "center",
     top: -100,
+    zIndex:1000,
+    position:'absolute',
   },
   txt: {
     alignSelf: "center",
-    top: -80,
+    marginTop: "25%",
+    // top: -80,
   },
   btn: {
     backgroundColor: colors.sun,
     borderRadius: 50,
     width: 300,
     height: 70,
-    padding: 30,
+    // padding: 30,
     alignSelf: "center",
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
     alignItems: "center",
     marginTop: 20,
   },
   btninner: {
+    // backgroundColor:'red',
     color: "white",
-    fontSize: 22,
+    fontSize: 20,
   },
 });
 

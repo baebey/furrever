@@ -6,7 +6,7 @@ import { Input } from "react-native-elements";
 
 
 // Import Component
-import BoxMyPet from "../components/BoxMyPet";
+import Box_MyPet from "../components/Box_MyPet";
 
 
 const ListMyPet = ({ navigation }) => {
@@ -15,7 +15,7 @@ const ListMyPet = ({ navigation }) => {
     console.log("item ใน Box 🧧🧧 :",item);
 
     return (
-      <BoxMyPet
+      <Box_MyPet
         item={item}
         navigation={navigation}
         onSelect={() => {

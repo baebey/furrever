@@ -1,13 +1,13 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, SafeAreaView } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
-import TopNav from './TopNav';
-import Banner from './Banner';
+// import TopNav from './TopNav';
+// import Banner from './Banner';
 import { Dimensions } from 'react-native';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import Carousel from 'react-native-snap-carousel';
+// import Carousel from 'react-native-snap-carousel';
 
 const Post = () => {
     const screenWidth = Dimensions.get('window').width;
@@ -47,8 +47,8 @@ const Post = () => {
 
 
     return (
-        <SafeAreaView style={{marginBottom: 100}}>
-            <View style={{ backgroundColor: '#D9D9D9' }}>
+        // <View style={{marginBottom: 100, backgroundColor:'red'}}>
+            <View style={{ backgroundColor: '#D9D9D9', marginBottom: 20 }}>
                 <View>
                 </View>
                 <View>
@@ -99,14 +99,13 @@ const Post = () => {
                     />
                 </View>
             </View>
-        </SafeAreaView>
+        // </View>
     );
 
 
 };
 
 const styles = StyleSheet.create({
-
     container: {
 
         backgroundColor: 'white',

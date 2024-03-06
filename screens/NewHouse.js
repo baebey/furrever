@@ -1,130 +1,53 @@
-import React, { useState, useEffect } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  Image,
-  TextInput,
-  Platform,
-} from "react-native";
-import { SelectList } from "react-native-dropdown-select-list";
-import * as ImagePicker from "expo-image-picker";
-import DateTimePicker from "@react-native-community/datetimepicker";
+import React from "react";
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import PostNewHouse from "../components/postNewHouse";
 
-export default function UploadPets() {
+export default function NewHouse() {
   // Dropdown
-  const [selected, setSelected] = useState("");
-
+  const [selected, setSelected] = React.useState("");
   const data = [
-    { key: "1", value: "Kaitoon" },
-    { key: "2", value: "Kaotom" },
+    { key: "1", value: "Thai" },
+    { key: "2", value: "Thailand" },
   ];
-
-  // Image picker
-  const [image, setImage] = useState(null); // Default image
-
-  const pickImage = async () => {
-    // No permissions request is necessary for launching the image library
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
-    });
-
-    console.log(result);
-    console.log(image);
-
-    if (!result.canceled) {
-      setImage(result.assets[0].uri);
-    }
-  };
-
-  // TextInput
-  const [textPlace, onChangeTextPlace] = useState("");
-  const [textDay, setTextDay] = useState("");
-  const [textTime, setTextTime] = useState("");
-
-  // DateTimePicker
-  const [date, setDate] = useState(new Date());
-  const [showDatePicker, setShowDatePicker] = useState(false);
-  const [showTimePicker, setShowTimePicker] = useState(false);
-
-  const handleDateChange = (event, selectedDate) => {
-    setShowDatePicker(Platform.OS === "ios");
-    if (selectedDate) {
-      setDate(selectedDate);
-      setTextDay(selectedDate.toDateString());
-    }
-  };
-
-  const handleTimeChange = (event, selectedTime) => {
-    setShowTimePicker(Platform.OS === "ios");
-    if (selectedTime) {
-      setDate(selectedTime);
-      setTextTime(selectedTime.toLocaleTimeString());
-    }
-  };
 
   return (
     <View style={styles.container}>
-      <View>
-        <SelectList
-          setSelected={setSelected}
-          data={data}
-          placeholder="เลือกสัตว์เลี้ยงของคุณ"
+      <View style={styles.buttonTop}>
+        <TouchableOpacity style={styles.button}>
+          <Text style={{ fontSize: 25 }}>สุนัข</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button}>
+          <Text style={{ fontSize: 25 }}>แมง</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.postLost}>
+        <PostNewHouse
+          name="Mon"
+          year="4"
+          type="สุนัข"
+          sex="เพศผู้"
+          detail="หาน้องให้บ้านใหม่"
+          contact="สถานรับเลี้ยงดอบคำ"
+          tel="000-11111111"
         />
-      </View>
-      <View>
-        <View style={styles.imageContainer}>
-          <TouchableOpacity onPress={pickImage}>
-            <Image
-              source={{ uri: image }}
-              style={{ width: 200, height: 200 }}
-            />
-          </TouchableOpacity>
-        </View>
-      </View>
-      <View>
-        <View>
-          <Text>สถานที่ที่คาดว่าหาย</Text>
-          <TextInput
-            style={styles.input}
-            onChangeText={onChangeTextPlace}
-            value={textPlace}
-          />
-        </View>
-
-        <View>
-          <Text>วันที่ที่หาย</Text>
-          <TouchableOpacity onPress={() => setShowDatePicker(true)}>
-            <TextInput style={styles.input} value={textDay} editable={false} />
-          </TouchableOpacity>
-          {showDatePicker && (
-            <DateTimePicker
-              value={date}
-              mode="date"
-              display="default"
-              onChange={handleDateChange}
-            />
-          )}
-        </View>
-
-        <View>
-          <Text>เวลาที่หาย</Text>
-          <TouchableOpacity onPress={() => setShowTimePicker(true)}>
-            <TextInput style={styles.input} value={textTime} editable={false} />
-          </TouchableOpacity>
-          {showTimePicker && (
-            <DateTimePicker
-              value={date}
-              mode="time"
-              display="default"
-              onChange={handleTimeChange}
-            />
-          )}
-        </View>
+        <PostNewHouse
+          name="Tom"
+          year="4"
+          type="สุนัข"
+          sex="เพศเมี่ย"
+          detail="หาน้องใหม่ให้น้อง"
+          contact="Dum"
+          tel="000-11111111"
+        />
+        <PostNewHouse
+          name="Jerrie"
+          year="2"
+          type="สุนัข"
+          sex="เพศผู้"
+          detail="หาผู้ใจรักใจบุณ"
+          contact="นางสาวสำใจหยอก"
+          tel="000-11111111"
+        />
       </View>
     </View>
   );
@@ -132,23 +55,24 @@ export default function UploadPets() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#fff",
     paddingHorizontal: 25,
     marginTop: 50,
+    backgroundColor: "#fff",
   },
-  imageContainer: {
-    position: "relative",
+  buttonTop: {
+    flexDirection: "row",
+    backgroundColor: "#E2CC9B",
+    justifyContent: "center",
+    alignItems: "center",
   },
-  Image: {
-    width: 200,
-    height: 180,
+  button: {
+    backgroundColor: "#E2CC9B",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "50%",
+    borderWidth: 0.5,
   },
-  input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
-    color: "black",
+  postLost: {
+    marginTop: 10,
   },
 });

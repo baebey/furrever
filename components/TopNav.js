@@ -5,9 +5,9 @@ import Banner from './Banner';
 
 const TopNav = () => {
   return (
-    <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 15, paddingBottom: 5 }}>
+    <View style={{ backgroundColor:'#bad36d', flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 15, paddingBottom: 5 }}>
       <Text style={{fontSize: 25}}>Furrever</Text>
-      <TouchableOpacity >
+      <TouchableOpacity style={{justifyContent:'center'}} >
         <Icon name="plus-circle" size={25}/>      
       </TouchableOpacity>
     </View>

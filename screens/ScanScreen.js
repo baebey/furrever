@@ -7,7 +7,7 @@ const ScanScreen = ({ navigation }) => {
             <ScrollView>
                 <View style={{ flex: 1, flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
 
-                    <Text style={{ fontWeight: 'bold', fontSize: 20}}>ผลการค้นหา...</Text>
+                    <Text style={{ fontWeight: 'bold', fontSize: 20, marginTop:10}}>ผลการค้นหา...</Text>
                     <Text style={{ fontWeight: 'bold', fontSize: 20}}>สัตว์ที่ใก้เคียงกับรูปที่ท่านแสกน</Text>
 
                     <View style={styles.box} >

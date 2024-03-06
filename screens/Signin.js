@@ -21,7 +21,7 @@ export default function Signin({ navigation }) {
             <TextInput secureTextEntry={!showPassword}   style={styles.input}  placeholder="รหัสผ่าน"/> 
             <MaterialCommunityIcons name={showPassword ? 'eye' : 'eye-off'} size={22} color="#faaf6b" style={styles.icon} onPress={toggleShowPassword}/> 
         </View> 
-        <TouchableOpacity style={styles.addButton} onPress={()=>{navigation.navigate("Signup")}}>
+        <TouchableOpacity style={styles.addButton} onPress={()=>{navigation.navigate("Tab")}}>
           <Text style={{ fontSize: 16 }}>เข้าสู่ระบบ</Text>
         </TouchableOpacity>
       </View>
@@ -29,7 +29,7 @@ export default function Signin({ navigation }) {
       {/* ask */}
       <View style={{flexDirection: 'row', alignSelf: 'center', marginTop: 155, marginBottom: 200}}>
       <Text style={{ fontSize: 15, marginRight: 5,}}>ยังไม่ได้เป็นสมาชิก?</Text>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={()=>{navigation.navigate("Signup")}}>
        <Text style={{ fontSize: 15, color: '#faaf6b', fontWeight: 'bold'}}>สมัครเลย</Text>
       </TouchableOpacity>
     </View>
