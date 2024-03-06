@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native';
-import Signin from './page/Signin';
-import Signup from './page/Signup';
-import Notification from './page/Notification';
+import Signin from './screens/Signin';
+import Signup from './screens/Signup';
+import Notification from './screens/Notification';
 
 export default function App() {
   return (
