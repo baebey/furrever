@@ -3,13 +3,17 @@ import Signin from './page/Signin';
 import Signup from './page/Signup';
 import Notification from './page/Notification';
 
+
+
+import MyNavigator from "./navigation/MyNavigator"
+
 export default function App() {
   return (
-    <View>
-      {/* <Signin /> */}
-      {/* <Signup /> */}
-      <Notification />
-    </View>
+    // <View>
+    //   {/* <Signin /> */}
+    //   {/* <Notification /> */}
+    // </View>
+    <MyNavigator />
   );
 }
 

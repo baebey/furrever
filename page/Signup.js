@@ -3,7 +3,7 @@ import { StyleSheet, Text, View , TextInput, TouchableOpacity} from 'react-nativ
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 
 
-export default function Signup() {
+export default function Signup({ navigation }) {
 
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -44,7 +44,7 @@ export default function Signup() {
       {/* ask */}
       <View style={{flexDirection: 'row', alignSelf: 'center', marginTop: 60, marginBottom: 200}}>
       <Text style={{ fontSize: 15, marginRight: 5,}}>มีบัญชีอยู่แล้ว?</Text>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={()=>{navigation.navigate("Signin")}}>
        <Text style={{ fontSize: 15, color: '#faaf6b', fontWeight: 'bold'}}>เข้าสู่ระบบ</Text>
       </TouchableOpacity>
     </View>
