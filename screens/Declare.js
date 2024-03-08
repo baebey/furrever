@@ -27,10 +27,9 @@ const Declare = ({ navigation }) => {
                     <Text style={{ fontWeight: 'bold', fontSize: 20, }}>แจ้งสัตว์หาย</Text>
                     <Text style={{  }}>กระจายข่าวสัตว์เลี้ยงที่หาย/พบsssssss</Text>
                 </View>
-                
             </TouchableOpacity> */}
 
-            <Pressable style={styles.box} onPress={() => navigation.navigate('')}>
+            <Pressable style={styles.box} onPress={() => navigation.navigate('NewHouse')}>
                 <View style={styles.row}>
                     <FontAwesome name="home" size={30} color="black" style={{ marginRight: 10 }} />
                 <View>
@@ -70,6 +69,7 @@ const styles = StyleSheet.create({
         padding: 35,
         paddingHorizontal: 20,
         backgroundColor: "#F4EEEE",
+        justifyContent:'space-around',
     },
     box: {
         backgroundColor: "#FFDBAA",

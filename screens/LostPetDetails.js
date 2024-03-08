@@ -9,7 +9,7 @@ import { AntDesign } from '@expo/vector-icons';
 
 const LostPetDetails = ({ navigation }) => {
 
-  const [gender , setGender] = useState("male")
+  const [gender , setGender] = useState("female")
   
   return (
     <SafeAreaView style={styles.container}>
@@ -25,10 +25,9 @@ const LostPetDetails = ({ navigation }) => {
 
           <Image
               source={{
-                uri: "https://www.dexerto.es/cdn-cgi/image/width=3840,quality=75,format=auto/https://editors.dexerto.es/wp-content/uploads/sites/3/2023/10/12/jujutsu-kaisen-season-2-gojo-getting-hit.jpg",
+                uri: "https://media.discordapp.net/attachments/1014418970679451648/1214853008156917820/BF57178A-9A56-43A7-AF57-E2791A6AE05F.jpg?ex=65fa9f08&is=65e82a08&hm=ba0229a0640abf5a897d1301787bf1573d8dcbbf404efa3d992dc87f67807721&=&format=webp&width=1192&height=670",
               }}
-              
-              style={{...styles.avatarImage, height:200}}
+              style={{height: 200, }}
             />
             { (gender == "male") ? (
               <Text style={{position:'absolute', zIndex:1000, right:0, bottom:0 , fontSize: 40, fontWeight: 'bold'}}> <Ionicons name="male" size={25} color="black" /> </Text>
@@ -119,9 +118,9 @@ const styles = StyleSheet.create({
   },
   avatarImage : {
     flex:0.5,
-    // width: 'auto',
-    // height: 300,
-    backgroundColor:'red'
+    width: '100%',
+    height: "100%",
+    // backgroundColor:'red'
   },
 
   detail: {
