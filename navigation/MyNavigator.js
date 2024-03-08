@@ -8,6 +8,7 @@ import { NavigationContainer } from "@react-navigation/native"
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 
+
 // Import Icon
 import { AntDesign } from '@expo/vector-icons';
 
@@ -28,13 +29,13 @@ import ListMyPet from "../screens/ListMyPet";
 
 
 // import ของ เบ
-import Signin from "../page/Signin.js";
-import Signup from "../page/Signup.js";
-import Notification from "../page/Notification.js";
+import Signin from "../screens/Signin";
+import Signup from "../screens/Signup";
+import Notification from "../screens/Notification";
 
 
 // import ของ เอิน
-import HomePage from "../screens/HomePage.js"
+import HomePage from "../screens/HomePage"
 
 
 // ของอุ้ม
@@ -43,8 +44,15 @@ import ProfileEdit from "../screens/ProfileEdit";
 
 
 // ของนน
-import Declare from '../screens/Declare.js';
+import Declare from '../screens/Declare';
 import ScanScreen from '../screens/ScanScreen';
+
+
+// ของDoll
+import NewHouse from "../screens/SecondTab/NewHouse";
+// import PetLost from "../screens/PetLost";
+// import UploadPets from "../screens/UploadPets";
+// import Test from "../screens/Test";
 
 
 
@@ -61,48 +69,63 @@ const colors = {
 };
 
 
+// const Test = () => { 
+//     return(
+//         <Stack.Navigator initialRouteName='Signin' screenOptions={{
+//             headerShown:true, 
+//             headerTintColor: '#f8f3df',
+//             headerTitleAlign: 'center', headerStyle: {backgroundColor: '#bad36d'}, headerTitleStyle: {color: '#f8f3df'},
+//         }} >
+//             <Stack.Group
+//                 screenOptions={({ navigation }) => ({
+//                 presentation: 'modal',
+//                 headerLeft: () => <TouchableOpacity onPress={navigation.goBack}><AntDesign style={{marginLeft: 10, }} name="left" size={24} color="black" /></TouchableOpacity>,
+//                 })}
+//             >
+//                 {/* ของเบ */}
+//                 <Stack.Screen name='Signin' component={Signin}  />
+//                 <Stack.Screen name='Signup' component={Signup}  />
+//                 <Stack.Screen name='Notification' component={Notification} />
+
+//                 {/* ของเฟรม */}
+//                 <Stack.Screen name='AddMyPets' component={AddMyPets} />
+//                 <Stack.Screen name='ScreenTest' component={ScreenTest} />
+//                 <Stack.Screen name='ListMyPet' component={ListMyPet} />
+//                 <Stack.Screen name='LostPetDetails' component={LostPetDetails}  options={{headerShown:false}}  />
+
+//                 {/* ของเอิน */}
+//                 <Stack.Screen name='HomePage' component={HomePage} />
+
+//                 {/* ของอุ้ม */}
+//                 <Stack.Screen name="Profile" component={Profile} options={{ title: "Profile", headerShown: false,}} />
+                
+//                 {/* ของนน */}
+//                 <Stack.Screen name='FindScreen' component={FindScreen} />
+//                 <Stack.Screen name='ScanScreen' component={ScanScreen} />
+//             </Stack.Group>
+//         </Stack.Navigator>
+//     )
+// }
+
+
 const Authen = () => { 
     return(
         <Stack.Navigator initialRouteName='Signin' screenOptions={{
-            headerShown:true, 
-            headerTintColor: '#f8f3df',
-            headerTitleAlign: 'center', headerStyle: {backgroundColor: '#bad36d'}, headerTitleStyle: {color: '#f8f3df'},
+                        headerShown:true, 
+                        headerTintColor: '#f8f3df',
+                        headerTitleAlign: 'center', headerStyle: {backgroundColor: '#bad36d'}, headerTitleStyle: {color: '#f8f3df'},
         }} >
-            <Stack.Group
-                screenOptions={({ navigation }) => ({
-                presentation: 'modal',
-                headerLeft: () => <TouchableOpacity onPress={navigation.goBack}><AntDesign style={{marginLeft: 10, }} name="left" size={24} color="black" /></TouchableOpacity>,
-                })}
-            >
-                {/* ของเบ */}
-                <Stack.Screen name='Signin' component={Signin}  />
-                <Stack.Screen name='Signup' component={Signup}  />
-                <Stack.Screen name='Notification' component={Notification} />
-
-                {/* ของเฟรม */}
-                <Stack.Screen name='AddMyPets' component={AddMyPets} />
-                <Stack.Screen name='ScreenTest' component={ScreenTest} />
-                <Stack.Screen name='ListMyPet' component={ListMyPet} />
-                <Stack.Screen name='LostPetDetails' component={LostPetDetails}  options={{headerShown:false}}  />
-
-                {/* ของเอิน */}
-                <Stack.Screen name='HomePage' component={HomePage} />
-
-                {/* ของอุ้ม */}
-                <Stack.Screen name="Profile" component={Profile} options={{ title: "Profile", headerShown: false,}} />
-                
-                {/* ของนน */}
-                <Stack.Screen name='FindScreen' component={FindScreen} />
-                <Stack.Screen name='ScanScreen' component={ScanScreen} />
-
-
-
-            </Stack.Group>
+            <Stack.Screen name='Signin' component={Signin}  />
+            <Stack.Screen name='Signup' component={Signup}  />
         </Stack.Navigator>
     )
 }
 
-const ProfileTab = () => {
+
+
+
+// Profile
+const FourthTab = () => {
     return(
         <Stack.Navigator initialRouteName="Profile" screenOptions={{ headerStyle: { backgroundColor: "lightblue" } }}>
             <Stack.Screen name="Profile" component={Profile} options={{ title: "Profile", headerShown: false, }} />
@@ -123,8 +146,21 @@ const HomeTab = () => {
     )
 }
 
+// Declare or หน้าประกาศ
+const SecondTab = () => {
+    return(
+        <Stack.Navigator initialRouteName="NewHouse" screenOptions={{  headerTitleAlign: 'center', headerStyle: { backgroundColor: colors.mint } }}>
+            <Stack.Screen name='Declare' component={Declare} />
+            <Stack.Screen name='ScanScreen' component={ScanScreen} />
+            <Stack.Screen name='LostPetDetails' component={LostPetDetails}  options={{headerShown:false}}  />
+            <Stack.Screen name='NewHouse' component={NewHouse} />
+        </Stack.Navigator>
+    )
+}
 
-const NotificationTab = () => {
+
+// Notification
+const ThirdTab = () => {
     return(
         <Stack.Navigator initialRouteName="Notification" screenOptions={{ headerStyle: { backgroundColor: "lightblue" }, headerTitleAlign: 'center' }}>
             <Stack.Screen name='Notification' component={Notification} />
@@ -133,22 +169,13 @@ const NotificationTab = () => {
 }
 
 
-const DeclareTab = () => {
-    return(
-        <Stack.Navigator initialRouteName="Profile" screenOptions={{  headerTitleAlign: 'center', headerStyle: { backgroundColor: colors.mint } }}>
-            <Stack.Screen name='Declare' component={Declare} />
-            <Stack.Screen name='ScanScreen' component={ScanScreen} />
-            <Stack.Screen name='LostPetDetails' component={LostPetDetails}  options={{headerShown:false}}  />
-        </Stack.Navigator>
-    )
-}
 
 
 
 
 const Tab = () => { 
     return(
-        <TabStack.Navigator initialRouteName='Home' screenOptions={{ 
+        <TabStack.Navigator initialRouteName='Declare' screenOptions={{ 
             headerShown:false ,
             tabBarActiveTintColor: "#FF724C", 
             tabBarStyle: { backgroundColor: "#bad36d" }, 
@@ -158,17 +185,17 @@ const Tab = () => {
             <TabStack.Screen name='Home' component={HomeTab} options={{ tabBarIcon: ({ color, size }) => {
                 return <AntDesign name="home" size={24} color={color} />;  
             },}}  />
-            <TabStack.Screen name='Declare' component={DeclareTab} options={{ tabBarIcon: ({ color, size }) => {
+            <TabStack.Screen name='Declare' component={SecondTab} options={{ tabBarIcon: ({ color, size }) => {
                 return <AntDesign name="home" size={24} color={color} />;  
             }, }}  />
 
-            <TabStack.Screen name='Noti' component={NotificationTab}
+            <TabStack.Screen name='Noti' component={ThirdTab}
                 options={{
                     tabBarIcon: ({ color, size }) => ( <AntDesign name="home" size={24} color={color} />),
                     // tabBarLabel: "", // หรือใช้ tabBarLabel: undefined,
                 }}
             />
-            <TabStack.Screen name='Profile' component={ProfileTab} options={{ tabBarIcon: ({ color, size }) => {
+            <TabStack.Screen name='Profile' component={FourthTab} options={{ tabBarIcon: ({ color, size }) => {
                 return <AntDesign name="home" size={24} color={color} />;  
             }, }}  />
 

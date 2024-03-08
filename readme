@@ -1,0 +1,25 @@
+
+
+
+
+
+## หลังจาก Load Branch
+```
+npm install
+npx react-native start --reset-cache
+npx expo start
+```
+
+
+## ลงเพิ่ม
+```
+npm install deprecated-react-native-prop-types
+npm install react-native-tab-view 
+```
+
+
+## อ้างอิง
+Icon &emsp; https://icons.expo.fyi/Index
+Scrollview &emsp; https://reactnative.dev/docs/scrollview
+Tab-view &emsp; https://reactnavigation.org/docs/tab-view/
+FlatList &emsp; https://reactnative.dev/docs/flatlist
