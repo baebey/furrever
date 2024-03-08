@@ -1,16 +1,20 @@
-
-import React, { useState } from "react";
+import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, TextInput, SafeAreaView, ScrollView, StatusBar, FlatList} from "react-native";
 import { RadioButton } from 'react-native-paper'; 
 import { Input } from "react-native-elements";
 
+
+// Redux
+import { useSelector, useDispatch } from "react-redux";
 
 // Import Component
 import Box_MyPet from "../components/Box_MyPet";
 
 
 const ListMyPet = ({ navigation }) => {
-    
+
+  const email = useSelector( (state) => state.myReducer.doc_name ); ; // ชื่อ document ของ user คนนี้
+  
   const renderItem = ({ item, index }, props) => {
     console.log("item ใน Box 🧧🧧 :",item);
 

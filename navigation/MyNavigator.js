@@ -36,7 +36,7 @@ import Notification from "../screens/Notification";
 
 // import ของ เอิน
 import HomePage from "../screens/HomePage"
-
+import AddPostScreen from '../screens/AddPostScreen'
 
 // ของอุ้ม
 import Profile from "../screens/Profile";
@@ -127,7 +127,7 @@ const Authen = () => {
 // Profile
 const FourthTab = () => {
     return(
-        <Stack.Navigator initialRouteName="Profile" screenOptions={{ headerStyle: { backgroundColor: "lightblue" } }}>
+        <Stack.Navigator initialRouteName="Profile" screenOptions={{ headerTitleAlign: 'center', headerStyle: { backgroundColor: "lightblue" } }}>
             <Stack.Screen name="Profile" component={Profile} options={{ title: "Profile", headerShown: false, }} />
 
             <Stack.Screen name="ProfileEdit" component={ProfileEdit} options={{ headerTitle: "Profile Edit", headerTitleAlign: 'center', headerStyle: { backgroundColor: colors.mint }}}/>
@@ -140,8 +140,9 @@ const FourthTab = () => {
 
 const HomeTab = () => {
     return(
-        <Stack.Navigator initialRouteName="HomePage" screenOptions={{ headerStyle: { backgroundColor: "lightblue" } }}>
+        <Stack.Navigator initialRouteName="HomePage" screenOptions={{ headerTitleAlign: 'center', headerStyle: { backgroundColor: "lightblue" } }}>
             <Stack.Screen name='HomePage' component={HomePage} options={{headerShown:false}} />
+            <Stack.Screen name='AddPost' component={AddPostScreen} options={{headerShown:true}} />
         </Stack.Navigator>
     )
 }

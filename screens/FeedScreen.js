@@ -19,12 +19,12 @@ import Post from "../components/Post";
 import Banner from "../components/Banner";
 // import Banner from '../components/Banner'
 
-const FeedScreen = () => {
+const FeedScreen = ( props ) => {
     return (
       <SafeAreaView style={styles.container}>
         <ScrollView style={styles.scrollView}>
 
-          <TopNav/>
+          <TopNav navigation={props.navigation} />
           <Banner/>
           <Post/>
 

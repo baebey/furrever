@@ -21,7 +21,7 @@ import FeedScreen from '../screens/FeedScreen'
 import Banner from '../components/Banner'
 
 
-const HomePage = ({ route }) => {
+const HomePage = ({ route, navigation }) => {
 
     console.log("🧋🧋🧋", route.params);
 
@@ -32,7 +32,7 @@ const HomePage = ({ route }) => {
       
       <GestureHandlerRootView style={styles.container}>
         {/* <Banner/> */}
-        <FeedScreen/>
+        <FeedScreen navigation={navigation} />
       </GestureHandlerRootView>
 
     );
