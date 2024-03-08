@@ -15,7 +15,7 @@ export default function Signin({ navigation }) {
       <Text style={{color: 'black', fontSize: 28, marginTop: 120}}>ยินดีต้อนรับ!</Text>
 
       {/* form */}
-      <View style={{marginTop: 150,}}>
+      <View style={{marginTop: 100,}}>
         <TextInput style={{borderWidth: 1, borderRadius: 50, height: 45, borderColor: '#faaf6b', padding: 12, fontSize: 16, marginBottom: 20, }} placeholder="อีเมลล์"  keyboardType="email-address"/>
          <View style={styles.con_password}> 
             <TextInput secureTextEntry={!showPassword}   style={styles.input}  placeholder="รหัสผ่าน"/> 

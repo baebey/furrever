@@ -44,6 +44,7 @@ const FirstRoute = () => (
   <SafeAreaView style={styles.containerSafe}>
     <ScrollView style={styles.scrollView}>
       <FlatList
+      style={{paddingHorizontal:15}}
         data={data}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
@@ -87,6 +88,15 @@ export default function NewHouse() {
     />
   );
 }
+
+const colors = {
+  mint: "#bad36d",
+  tan: "#e2cc9b",
+  sun: "#faaf6b",
+  pinky: "#fadacb",
+  ivory: "#f8f3df",
+};
+
 
 const styles = StyleSheet.create({
   containerSafe : {
