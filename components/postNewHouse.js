@@ -25,7 +25,7 @@ const postLostPet = (props) => {
     >
       <View style={styles.list}>
 
-        {/* <View style={{ flexDirection:'row', backgroundColor:'cyan' , borderRadius: 20, borderWidth:3 }}> */}
+    
 
 
             {/* ส่วนของรูปภาพด้านซ้าย */}
@@ -49,8 +49,7 @@ const postLostPet = (props) => {
         </View>
         
   
-        
-      {/* </View> */}
+    
     </TouchableOpacity>
   );
 };

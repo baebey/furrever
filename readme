@@ -10,6 +10,9 @@ npx expo start
 ```
 npm install deprecated-react-native-prop-types
 npm install react-native-tab-view 
+npm install @react-native-community/datetimepicker
+npx expo install @react-native-community/datetimepicker
+
 ```
 
 

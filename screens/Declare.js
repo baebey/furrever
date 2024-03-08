@@ -9,7 +9,7 @@ const Declare = ({ navigation }) => {
     return (
         <View style={styles.container}>
 
-            <Pressable style={styles.box} onPress={() => navigation.navigate('')}>
+            <Pressable style={styles.box} onPress={() => navigation.navigate('UploadPets')}>
                 <View style={styles.row}>
                     <Entypo name="megaphone" size={30} color="black" style={{ marginRight: 10 }} />
                 <View>
@@ -49,7 +49,7 @@ const Declare = ({ navigation }) => {
                 </View>
             </Pressable>
 
-            <Pressable style={styles.box} onPress={() => navigation.navigate('LostPetDetails')}>
+            <Pressable style={styles.box} onPress={() => navigation.navigate('PetLost')}>
                 <View style={styles.row}>
                     <AntDesign name="search1" size={30} color="black" style={{ marginRight: 10 }} />
                 <View>

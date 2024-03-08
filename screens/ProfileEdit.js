@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Image, TextInput, Platform,} from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Image, TextInput, Platform, SafeAreaView , ScrollView , StatusBar } from "react-native";
 import { Input } from "react-native-elements";
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -41,7 +41,8 @@ const ProfileEdit = ({ route, navigation }) => {
   };
 
 return (
-    <View style={styles.container}>
+    <SafeAreaView >
+      <ScrollView>
       <View style={styles.container}>
         <TouchableOpacity
           style={[styles.avatar]}
@@ -96,7 +97,8 @@ return (
           </TouchableOpacity>
         </View>
       </View>
-    </View>
+      </ScrollView>
+    </SafeAreaView >
   );
 };
 
@@ -111,7 +113,8 @@ const colors = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    top: 18,
+    paddingTop: 15,
+    // top: 5,
   },
   avatar: {
     width: 175,
@@ -132,6 +135,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: '35%',
     left: '35%',
+    
   },
   addressInput: {
     borderWidth: 1,

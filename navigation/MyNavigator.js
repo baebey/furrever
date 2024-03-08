@@ -50,8 +50,8 @@ import ScanScreen from '../screens/ScanScreen';
 
 // ของDoll
 import NewHouse from "../screens/SecondTab/NewHouse";
-// import PetLost from "../screens/PetLost";
-// import UploadPets from "../screens/UploadPets";
+import PetLost from "../screens/SecondTab/PetLost";
+import UploadPets from "../screens/SecondTab/UploadPets";
 // import Test from "../screens/Test";
 
 
@@ -152,8 +152,10 @@ const SecondTab = () => {
         <Stack.Navigator initialRouteName="Declare" screenOptions={{  headerTitleAlign: 'center', headerStyle: { backgroundColor: colors.mint } }}>
             <Stack.Screen name='Declare' component={Declare} />
             <Stack.Screen name='ScanScreen' component={ScanScreen} />
-            <Stack.Screen name='LostPetDetails' component={LostPetDetails}  options={{headerShown:false}}  />
             <Stack.Screen name='NewHouse' component={NewHouse} />
+            <Stack.Screen name='PetLost' component={PetLost} />
+            <Stack.Screen name='UploadPets' component={UploadPets} />
+            <Stack.Screen name='LostPetDetails' component={LostPetDetails}  options={{headerShown:false}}  />
         </Stack.Navigator>
     )
 }
