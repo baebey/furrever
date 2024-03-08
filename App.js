@@ -5,6 +5,7 @@ import Banner from './components/Banner'
 import Post from './components/Post'
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import FeedScreen from './screens/FeedScreen'
+import AddPostScreen from './screens/AddPostScreen'
 
 
 const App = () => {
@@ -13,6 +14,7 @@ const App = () => {
     <GestureHandlerRootView style={styles.container}>
       <FeedScreen/>
       {/* <Banner/> */}
+      {/* <AddPostScreen/> */}
     </GestureHandlerRootView>
     
   );
