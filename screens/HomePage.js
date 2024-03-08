@@ -21,7 +21,11 @@ import FeedScreen from '../screens/FeedScreen'
 import Banner from '../components/Banner'
 
 
-const HomePage = () => {
+const HomePage = ({ route }) => {
+
+    console.log("🧋🧋🧋", route.params);
+
+
     return (
       // ต้องใช้เพราะมันจะ error ตอนรันบังคับใช้ทำไมไม่รู้อิ gesture
 

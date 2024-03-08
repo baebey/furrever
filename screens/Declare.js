@@ -5,7 +5,11 @@ import { FontAwesome } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 
-const Declare = ({ navigation }) => {
+const Declare = ({ navigation, route }) => {
+
+    console.log(route.params);
+
+
     return (
         <View style={styles.container}>
 
