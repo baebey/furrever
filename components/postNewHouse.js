@@ -29,20 +29,19 @@ const postLostPet = (props) => {
 
 
             {/* ส่วนของรูปภาพด้านซ้าย */}
-            <View >
+            <View style={{justifyContent:'center'}}>
               <Image source={{
                 uri: props.pic,
               }}
-              style={{ width: 130, height: 200, borderRadius:17 }} />
+              style={{ width: 130, height: 180, borderRadius:17 }} />
             </View>
 
             {/* ส่วนของข้อมูลด้านขวา */}
-            <View style={{ justifyContent:'space-around',  }}>
+            <View style={{ justifyContent:'space-around', paddingHorizontal:7 }}>
               <Text style={{ fontSize: 20 }}>{props.name}</Text>
               <Text style={styles.fontGreySizeSmall}>{props.sex}, {props.year} ปี</Text>
-              <View style={{backgroundColor: colors.sun, paddingVertical:10 , borderRadius:10 , maxWidth:170 , minWidth:170}}>
-                <Text style={{ }}>รายรละเอียด :</Text>
-                <Text style={{ }}>{props.detail}</Text>
+              <View style={{backgroundColor: colors.sun, paddingVertical:10 , paddingHorizontal:5, borderRadius:10 , maxWidth:170 , minWidth:170}}>
+                <Text style={{ fontSize: 11 }}><Text style={{ fontWeight: 'bold' }}>รายละเอียด :</Text> {props.detail}</Text>
               </View>
               <Text style={{ fontSize: 10, color: "grey",  maxWidth:170 , minWidth:170 }}>ติดต่อที่: {props.contact}</Text>
               <Text style={styles.fontSizeSmall}><AntDesign name="phone" size={15} color="black" /> {props.tel}</Text>
@@ -65,9 +64,10 @@ const styles = StyleSheet.create({
     justifyContent:'space-between',
     borderRadius: 20,
     // padding: 5,
-    // borderColor: "#e2cc9b",
-    borderWidth: 3,
+    borderColor: "#e2cc9b",
+    borderWidth: 1,
     // margin: 5,
+    // paddingVertical:
   },
   fontGreySizeSmall: {
     fontSize: 12,
@@ -81,6 +81,7 @@ const styles = StyleSheet.create({
     // opacity: 5,
     // borderRadius: 15,
     // width: "100%",
+    
     marginTop: 3,
     marginBottom: 3,
   },

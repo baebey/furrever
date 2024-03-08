@@ -27,7 +27,7 @@ export default function Signin({ navigation }) {
       </View>
 
       {/* ask */}
-      <View style={{flexDirection: 'row', alignSelf: 'center', marginTop: 155, marginBottom: 200}}>
+      <View style={{flexDirection: 'row', alignSelf: 'center', marginTop: 50, marginBottom: 200}}>
       <Text style={{ fontSize: 15, marginRight: 5,}}>ยังไม่ได้เป็นสมาชิก?</Text>
       <TouchableOpacity onPress={()=>{navigation.navigate("Signup")}}>
        <Text style={{ fontSize: 15, color: '#faaf6b', fontWeight: 'bold'}}>สมัครเลย</Text>

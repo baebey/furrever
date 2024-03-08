@@ -12,9 +12,10 @@ import PostNewHouse from "../../components/postNewHouse";
 
 
 const data = [
-  { pic:"https://cdn.mos.cms.futurecdn.net/XjZw5ff68i24oYseKq2CWd-1200-80.jpg",name: 'Mon', year: '4', type:"สุนัข", sex:"เพศผู้" , detail:"หาน้องให้บ้านใหม่", contact:"งงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงง", tel:"000-11111111" },
-  { pic:"https://butwhytho.net/wp-content/uploads/2023/09/Gojo-Jujutsu-Kaisen-But-Why-Tho-2.jpg",name: 'Tom', year: '4', type:"สุนัข", sex:"เพศเมีย" , detail:"หาน้องให้กดหเพ้กดกเ้ดัาะนเดกพหำพดฟไกหีะดดะ้ดฟถะัพดกพะดฟำดกบ้านใหม่", contact:"คืออะไร", tel:"000-11111111" },
-  { pic:"https://i.pinimg.com/736x/9b/88/cc/9b88cc051e886bc16f14b5c68b13ac8d.jpg",name: 'Jerrie', year: '4', type:"สุนัข", sex:"เพศผู้" , detail:"หาน้องให้บ้านใหม่", contact:"สถานรับเลี้ยงดอบคำ", tel:"000-11111111" },
+  { pic:"https://cdn.mos.cms.futurecdn.net/XjZw5ff68i24oYseKq2CWd-1200-80.jpg",name: 'Mon', year: '4', type:"สุนัข", sex:"เพศผู้" , detail:"กินเก่งเกินไปค่ะ วันๆจะกินแต่ดังโงะ เจ้าของจนไปแล้วค่ะ", contact:"งงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงง", tel:"000-11111111" },
+  { pic:"https://butwhytho.net/wp-content/uploads/2023/09/Gojo-Jujutsu-Kaisen-But-Why-Tho-2.jpg",name: 'Tom', year: '4', type:"สุนัข", sex:"เพศเมีย" , detail:"หาบ้านใหม่ให้น้องค่ะ พอดีทางเราไม่สะดวกรับเลี้ยง เลยอยากขอคนใจบุญรับเลี้ยงเจ้าหมาตัวนี้หน่อยค่ะ", contact:"คืออะไร", tel:"000-11111111" },
+  { pic:"https://i.pinimg.com/736x/9b/88/cc/9b88cc051e886bc16f14b5c68b13ac8d.jpg",name: 'Jerrie', year: '4', type:"สุนัข", sex:"เพศผู้" , detail:"งื้อ", contact:"สถานรับเลี้ยงดอบคำ", tel:"000-11111111" },
+  { pic:"https://i.pinimg.com/736x/9b/88/cc/9b88cc051e886bc16f14b5c68b13ac8d.jpg",name: 'Jerrie', year: '4', type:"สุนัข", sex:"เพศผู้" , detail:"งื้อ", contact:"สถานรับเลี้ยงดอบคำ", tel:"000-11111111" },
   // Add more items as needed
 ];
 
@@ -54,7 +55,12 @@ const FirstRoute = () => (
 );
 
 const SecondRoute = () => (
-  <View style={{ flex: 1, backgroundColor: '#673ab7' }} />
+  <FlatList
+      style={{paddingHorizontal:15}}
+        data={data}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+      />
 );
 
 const renderScene = SceneMap({
