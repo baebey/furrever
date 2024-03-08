@@ -149,7 +149,7 @@ const HomeTab = () => {
 // Declare or หน้าประกาศ
 const SecondTab = () => {
     return(
-        <Stack.Navigator initialRouteName="NewHouse" screenOptions={{  headerTitleAlign: 'center', headerStyle: { backgroundColor: colors.mint } }}>
+        <Stack.Navigator initialRouteName="Declare" screenOptions={{  headerTitleAlign: 'center', headerStyle: { backgroundColor: colors.mint } }}>
             <Stack.Screen name='Declare' component={Declare} />
             <Stack.Screen name='ScanScreen' component={ScanScreen} />
             <Stack.Screen name='LostPetDetails' component={LostPetDetails}  options={{headerShown:false}}  />
@@ -175,7 +175,7 @@ const ThirdTab = () => {
 
 const Tab = () => { 
     return(
-        <TabStack.Navigator initialRouteName='Declare' screenOptions={{ 
+        <TabStack.Navigator initialRouteName='Home' screenOptions={{ 
             headerShown:false ,
             tabBarActiveTintColor: "#FF724C", 
             tabBarStyle: { backgroundColor: "#bad36d" }, 
@@ -207,7 +207,7 @@ const Tab = () => {
 const MainNavigator = () => { 
     return(
         <NavigationContainer>
-            <Stack.Navigator  initialRouteName="Tab" screenOptions={{headerShown:false}}>
+            <Stack.Navigator  initialRouteName="Authen" screenOptions={{headerShown:false}}>
                 <Stack.Screen name="Authen" component={Authen} />
                 <Stack.Screen name='Tab' component={Tab} />
             </Stack.Navigator>

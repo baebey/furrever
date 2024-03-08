@@ -12,8 +12,8 @@ import PostNewHouse from "../../components/postNewHouse";
 
 
 const data = [
-  { pic:"https://editors.dexerto.com/wp-content/uploads/2023/11/02/jujutsu-kaisen-sukuna.jpeg",name: 'Mon', year: '4', type:"สุนัข", sex:"เพศผู้" , detail:"หาน้องให้บ้านใหม่", contact:"สถานรับเลี้ยงดอบคำ", tel:"000-11111111" },
-  { pic:"https://butwhytho.net/wp-content/uploads/2023/09/Gojo-Jujutsu-Kaisen-But-Why-Tho-2.jpg",name: 'Tom', year: '4', type:"สุนัข", sex:"เพศเมีย" , detail:"หาน้องให้บ้านใหม่", contact:"สถานรับเลี้ยงดอบคำ", tel:"000-11111111" },
+  { pic:"https://cdn.mos.cms.futurecdn.net/XjZw5ff68i24oYseKq2CWd-1200-80.jpg",name: 'Mon', year: '4', type:"สุนัข", sex:"เพศผู้" , detail:"หาน้องให้บ้านใหม่", contact:"งงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงง", tel:"000-11111111" },
+  { pic:"https://butwhytho.net/wp-content/uploads/2023/09/Gojo-Jujutsu-Kaisen-But-Why-Tho-2.jpg",name: 'Tom', year: '4', type:"สุนัข", sex:"เพศเมีย" , detail:"หาน้องให้กดหเพ้กดกเ้ดัาะนเดกพหำพดฟไกหีะดดะ้ดฟถะัพดกพะดฟำดกบ้านใหม่", contact:"คืออะไร", tel:"000-11111111" },
   { pic:"https://i.pinimg.com/736x/9b/88/cc/9b88cc051e886bc16f14b5c68b13ac8d.jpg",name: 'Jerrie', year: '4', type:"สุนัข", sex:"เพศผู้" , detail:"หาน้องให้บ้านใหม่", contact:"สถานรับเลี้ยงดอบคำ", tel:"000-11111111" },
   // Add more items as needed
 ];
