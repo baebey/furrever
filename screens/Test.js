@@ -13,7 +13,7 @@ import { SelectList } from "react-native-dropdown-select-list";
 import * as ImagePicker from "expo-image-picker";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
-export default function UploadPets() {
+export default function Test() {
   // Dropdown
   const [selected, setSelected] = React.useState("");
 

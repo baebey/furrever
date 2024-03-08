@@ -4,7 +4,7 @@ import { StyleSheet, View } from "react-native";
 import BtnLostPet from "../components/BtnLostPet";
 import PostLostPet from "../components/postLostPet";
 
-export default function NewHouse() {
+export default function PetLost() {
   // Dropdown
   const [selected, setSelected] = React.useState("");
   const data = [

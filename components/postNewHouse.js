@@ -5,7 +5,7 @@ import React from "react";
 import { AntDesign } from "@expo/vector-icons";
 
 // Component
-const postLostPet = (props) => {
+const postNewHouse = (props) => {
   const navigation = props.navigation;
 
   return (
@@ -80,4 +80,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default postLostPet;
+export default postNewHouse;
