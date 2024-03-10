@@ -94,7 +94,8 @@ Tab-view &emsp; https://reactnavigation.org/docs/tab-view/
 FlatList &emsp; https://reactnative.dev/docs/flatlist
 
 
-สไลด์
+## สไลด์
+Mobile
 &emsp; https://onlearn.it.kmitl.ac.th/course/view.php?id=1274
 
 Database 
