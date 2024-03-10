@@ -1,15 +1,50 @@
+import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView, Image, ScrollView } from 'react-native'
-import React from 'react'
+
+
+
 
 
 // Import Icon
 import { AntDesign } from '@expo/vector-icons';
 
+// Firebase
+import firebase from "../firebase/firebaseDB";
 
 // Component
 const Box_Noti = (props) => {
-    const navigation = props.navigation;
-    const name = props.item;
+
+
+    const item = props.item; // item ={"detail": "ถูกใจโพสของคุณ", "notiType": "like", "responder": "64070257@kmitl.ac.th"}
+
+    // State
+    const [responder , setResponder] = useState("");
+    const [url , setUrl] = useState("");
+
+
+    const subjCollection = firebase.firestore().collection("Users");
+    const getCollection = (querySnapshot) => {
+        querySnapshot.forEach((res) => 
+        {
+            if(res.id == item.responder){
+                // res.data() = {"address": "บ้าน", "email": "64070257@kmitl.ac.th", "password": "1111", "pet": [""], "phone": "0876161934", "post": [""], "profile_url": "https://staticg.sportskeeda.com/editor/2023/06/ca77b-16863370440945-1920.jpg?w=840", "ussername": "gojo"}
+                setResponder(res.data().username)
+                setUrl(res.data().profile_url)
+            }
+        });
+    }
+    useEffect(() => {
+    // ทำงานที่ควรทำหลังจาก component ถูกเรนเดอร์
+    const unsubscribe = subjCollection.onSnapshot(getCollection);
+    return () => {
+        unsubscribe(); 
+    };
+    }, []);
+        
+
+
+    
+    
 
 
     return (
@@ -21,10 +56,10 @@ const Box_Noti = (props) => {
             >
 
                 <View style={styles.boxnoti}>
-                <Image style={styles.imagebox} source={{ uri: 'https://media.discordapp.net/attachments/1183169894330671256/1214545725686546452/image.png?ex=65f980da&is=65e70bda&hm=90c911acb83f216ef92c398c884e007cccd7a11bd4db7bb15e46edc6d64f103a&=&format=webp&quality=lossless'}}/>
+                <Image style={styles.imagebox} source={{ uri: url}}/>
                 <View style={{paddingRight: 55, justifyContent: 'center'}}>
-                    <Text style={styles.name}>{name} </Text>
-                    <Text style={styles.description}>ถูกใจโพสต์ของคุณ</Text>
+                    <Text style={styles.name}>{responder} {item.notiType}</Text>
+                    <Text style={styles.description}>{item.detail}</Text>
                 </View>
                 </View>
 

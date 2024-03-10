@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   StyleSheet,
   Text,
@@ -7,11 +7,14 @@ import {
   StatusBar,
   View
 } from 'react-native';
-// import { StatusBar } from 'expo-status-bar';
-
-// import Post from './components/Post'
-
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+
+
+// Import Redux
+import { useSelector, useDispatch } from "react-redux";
+
+
+
 
 
 // import Screen
@@ -21,9 +24,10 @@ import FeedScreen from '../screens/FeedScreen'
 import Banner from '../components/Banner'
 
 
-const HomePage = ({ route, navigation }) => {
+const HomePage = ({ navigation }) => {
 
-    console.log("🧋🧋🧋", route.params);
+    const documentName = useSelector( (state) => state.myReducer.doc_name ); ; // ชื่อ document ของ user คนนี้
+    console.log("🧋🧋🧋" , documentName);
 
 
     return (

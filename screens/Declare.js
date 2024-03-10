@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     box: {
         backgroundColor: "#FFDBAA",
         marginBottom: 25,
-        // height: 70,
+        height: "10%",
         borderRadius: 20,
         paddingHorizontal: 10,
         paddingVertical:20, // แนวตั้ง

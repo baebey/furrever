@@ -4,7 +4,11 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { StyleSheet } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 
+// Redux
+import { useSelector, useDispatch } from "react-redux";
 
+// Firebase
+import firebase from "../firebase/firebaseDB";
 
 const colors = {
   mint: "#bad36d",
@@ -16,7 +20,35 @@ const colors = {
 
 
 const AddPost = () => {
+
+  // State
   const [image, setImage] = useState("");
+
+  // Redux
+  const documentName = useSelector( (state) => state.myReducer.doc_name ); ; // ชื่อ document ของ user คนนี้
+
+
+  
+  const subjCollection = firebase.firestore().collection("Users").doc(documentName);
+  const getCollection = (res) => {
+      console.log(res.data());  // {"address": "", "email": "Judas@gmail.com", "password": "1111", "pets": [], "phone": "", "posts": [], "profile_url": "", "username": "Judas"}
+      const timestamp = new Date();
+      const formattedTimestamp = timestamp.toISOString().replace(/[:.]/g, '');
+      const postName = `${documentName}_${formattedTimestamp}`; // postName เช่น Judas@gmail.com_2024-03-10T114736465Z
+      
+      
+  }
+  
+  const addPost = () => {
+    console.log(documentName);
+    const unsubscribe = subjCollection.onSnapshot(getCollection);
+    return () => {
+          unsubscribe(); // ในบางกรณี, คุณต้องการทำงานบางอย่าง (เช่น, unsubscribe จาก Firebase, หรือทำความสะอาดข้อมูลที่ไม่ได้ใช้ = Unmounting (การลบ component ออกจาก DOM)
+        };
+  };
+
+
+
 
   useEffect(() => {
     (async () => {
@@ -98,6 +130,7 @@ const AddPost = () => {
         {/* Add Post Button */}
         <TouchableOpacity
           style={{ backgroundColor: colors.sun, padding: 10, alignItems: 'center' }}
+          onPress={addPost}
         >
           <Text style={{ color: '#fff' }}>Add Post</Text>
         </TouchableOpacity>

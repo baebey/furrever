@@ -16,6 +16,8 @@ import firebase from "../firebase/firebaseDB";
 
 export default function Signin({ navigation }) {
 
+  console.log("หน้า Log in");
+
   // data User
   const [userEmail , setUserEmail] = useState('');
   const [userPassword , setUserPassword] = useState('');
@@ -47,16 +49,16 @@ export default function Signin({ navigation }) {
     {
       // console.log(res.id, "res!!!!!!!!!!!!!!!!" , res.data());
       // res.data() = {"address": "ที่ไหนก้ได้ที่ไม่ใช่ที่นี่", "email": "owo@gmail.com", "noti": "owoNoti", "password": "1111", "pets": ["pet0001", "pet0002"], "phone": "0929264152", "posts": ["post0001"], "profile_url": "ht           ttps://firebasestorage.googleapis.com/v0/b/furrever-2929.appspot.com/o/Img%2F003.jpg?alt=media&token=2d508d1c-df7e-42bf-87d1-86fb22c2d1fe", "username": "แว่นตา"}  
-      console.log("userEmail ", userEmail , " userPassword" , userPassword) ;
-
+      
       if(res.id == userEmail){ // ถ้าเข้าเงื่อนไขนี้คือ ชื่อผู้ใช้ถูกแล้ว
         if(res.data().password == userPassword){
-          console.log("เข้าเงื่อนไขแล้ว จะย้ายไปหน้า Tab");
-
+          
+          console.log("res.id = ", res.id , "userEmail ", userEmail , " userPassword" , userPassword) ;
           //ส่งไปให้Storeส่วนกลาง หรือ Redux
-          dispatch(putDocumentName(userEmail)) // เอาชื่อ อีเมล ไปเก็บส่วนกลาง
-          dispatch( putUSER_DATA(res.data()) ) 
-
+          dispatch( putDocumentName(userEmail)) // เอาชื่อ อีเมล ไปเก็บส่วนกลาง
+          // dispatch( putUSER_DATA(res.data()) ) 
+          
+          console.log("🏯🏯 เข้าเงื่อนไขแล้ว จะย้ายไปหน้า Tab !!!!!!!!!!!!!");
           navigation.navigate("Tab");  // จะเก็บข้อมูลของ user ไว้เพื่อเอาไปใช้ต่อในตัวแอพ
         }
         else{ //กรณีพาสเวิร์ดผิด
@@ -69,7 +71,7 @@ export default function Signin({ navigation }) {
   }
 
   const findUser = () => {
-    console.log("test!!!!!!!!!!!!!!!!");
+    console.log("Log In !!!!!!!!!!!!!!!!");
     const unsubscribe = subjCollection.onSnapshot(getCollection);
     return () => {
       unsubscribe(); // ในบางกรณี, คุณต้องการทำงานบางอย่าง (เช่น, unsubscribe จาก Firebase, หรือทำความสะอาดข้อมูลที่ไม่ได้ใช้ = Unmounting (การลบ component ออกจาก DOM)
@@ -126,7 +128,8 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fadacb',
     paddingHorizontal: 35,
-    paddingTop: 35
+    paddingTop: 35,
+    flex:1,
   },
   con_password: { 
     flexDirection: 'row', 

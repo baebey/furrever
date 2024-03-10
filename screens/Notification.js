@@ -1,48 +1,60 @@
+
 import { StyleSheet, Text, View, Image, ScrollView, SafeAreaView, StatusBar, FlatList} from 'react-native';
+
+
+// Redux
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from "react-redux";
+
 
 // Import Component
 import Box_Noti from "../components/Box_Noti";
 
+// Import Firebase
+import firebase from "../firebase/firebaseDB";
+
 
 export default function Notification({ navigation }) {
+  const [notiData , setNotiData] = useState([]);
+
+  const documentName = useSelector( (state) => state.myReducer.doc_name ); ; // ชื่อ document ของ user คนนี้
+  
+  const subjCollection = firebase.firestore().collection("Notification").doc(documentName);
+  // const subjCollection_findUserName = firebase.firestore().collection("Users");
+
+  const getCollection = (res) => {
+    console.log("🌺🌺🌺" , documentName);
+    // console.log(res.id); // res.id คือ ชื่อ Document ใน DB
+    // console.log(res.data().noti);  // จะได้ข้อมูลของแต่ละ res.id หรือข้อมูลข้างใน Document มา
+    setNotiData([...res.data().noti])
+
+  }
 
 
-
-  const renderItem = ({ item, index }, props) => {
-    // 🧧 item.name = จะได้ชื่อของคนมาถูกใจโพสเรา เช่น  [ ผมรักหมามากครับ , Sakura, Gojo ]
-
-    return (
-      <Box_Noti
-        item={item.name}
-        navigation={navigation}
-        onSelect={() => {
-          console.log("click list ");
-          // props.navigation.navigate("ScreenTest")
-        }}
-      />
-
-    );
-  };
+  useEffect(() => {
+    // ทำงานที่ควรทำหลังจาก component ถูกเรนเดอร์
+    const unsubscribe = subjCollection.onSnapshot(getCollection);    
+    return () => {
+        unsubscribe(); 
+    };
+    }, []); 
+    
+    
 
 
-  const ItemData = [
-    {
-      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-      name: 'ผมรักหมามากครับ',
-    },
-    {
-      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-      name: 'Sakura',
-    },
-    {
-      id: '58694a0f-3da1-471f-bd96-145571e29d72',
-      name: 'Gojo',
-    },
-    {
-      id: '58694a0f-3da1-471f-bd96-145571e29d72',
-      name: 'Cat',
-    },
-  ];
+    const renderItem = ({ item }) => {
+      console.log("item 🎍🎍🎍🎍", item); // ตัวอย่างข้อมูล item = {"detail": "แสดงความคิดเห็นในโพสต์ของคุณ", "notiType": "comment", "responder": "64070257@kmitl.ac.th"}
+      return (
+        <Box_Noti
+          item={item}
+          onSelect={() => {
+            console.log("click list ");
+          }}
+        />
+      );
+    };
+
+
 
 
   return (
@@ -52,15 +64,12 @@ export default function Notification({ navigation }) {
       </View>
 
       {/* <ScrollView style={{marginBottom: 200, backgroundColor:'cyan'}}> */}
-          <FlatList 
-              style={{marginTop:10}}
-              navigation={navigation}
-              data={ItemData}
-              renderItem={(item) => 
-                renderItem(item, { navigation })
-              } 
-              numColumns={1} 
-              keyExtractor={(item, index) => index.toString()}
+          <FlatList
+            style={{ marginTop: 10 }}
+            data={notiData}
+            renderItem={renderItem}
+            numColumns={1}
+            keyExtractor={(item, index) => index.toString()}
           />
 
           {/* noti 1 box */}

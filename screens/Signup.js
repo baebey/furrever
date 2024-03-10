@@ -82,7 +82,7 @@ export default function Signup({ navigation }) {
       subjCollection.doc(userEmail).set({
         address: "",
         email: userEmail,
-        noti: userEmail,
+        // noti: userEmail,
         password:userPassword,
         pets:[],
         phone:"",
@@ -180,7 +180,8 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fadacb',
     paddingHorizontal: 35,
-    paddingTop: 35
+    paddingTop: 35,
+    flex:1,
   },
   password: { 
     flexDirection: 'row', 
