@@ -67,11 +67,12 @@ return () => {
 ## ถ้าอยากให้ ค้นหา Db ทันทีที่เปิดหน้าจะใช้ useEffect
 ```JS
 useEffect(() => {
+//  ทำงานที่ควรทำหลังจาก component ถูกเรนเดอร์
 const unsubscribe = subjCollection.onSnapshot(getCollection);
 return () => {
     unsubscribe();
 };
-}, []);  
+}, []); //  ตำแหน่งนี้กำหนด dependencies เป็น [] ซึ่งหมายถึง useEffect จะทำงานเมื่อ component ถูกเรนเดอร์ครั้งแรกเท่านั้น
 ```
 
 ---
