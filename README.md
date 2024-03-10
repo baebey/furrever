@@ -85,6 +85,24 @@ const [userEmail , setUserEmail] = useState('');
 
 ---
 
+# Update ข้อมูลใน DB
+```JS
+const deleteData = () => {
+  subjCollection.doc(point)
+  .set({
+      winAll:newWinAll,
+      price:all_price,
+  })
+  .then(() => {
+      navigation.pop();
+  }).catch(() => {
+      alert("ยูเซอร์ไม่ถูก Add");
+  })
+}
+```
+
+---
+
 ## อ้างอิง
 Icon &emsp; https://icons.expo.fyi/Index
 
