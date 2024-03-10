@@ -97,7 +97,7 @@ const getCollection = (querySnapshot) => {
     console.log(res.data());  // จะได้ข้อมูลของแต่ละ res.id หรือข้อมูลข้างใน Document มา
   });
 }
-const unsubscribe = subjCollection.onSnapshot(getCollection);
+subjCollection.onSnapshot(getCollection);
 ```
 
 ---
@@ -109,7 +109,7 @@ const getCollection = (res) => {
   console.log(res.id); // res.id คือ ชื่อ Document ใน DB
   console.log(res.data());  // จะได้ข้อมูลของแต่ละ res.id หรือข้อมูลข้างใน Document มา
 }
-const unsubscribe = subjCollection.onSnapshot(getCollection);
+subjCollection.onSnapshot(getCollection);
 ```
 
 ---
