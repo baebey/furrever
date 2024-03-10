@@ -85,9 +85,9 @@ const [userEmail , setUserEmail] = useState('');
 
 ---
 
-# Update ข้อมูลใน DB
+## Update ข้อมูลใน DB ⛩️⛩️⛩️
 ```JS
-const deleteData = () => {
+const UpdateData = () => {
   subjCollection.doc(point)
   .set({
       winAll:newWinAll,
