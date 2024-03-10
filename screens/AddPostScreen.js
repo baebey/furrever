@@ -32,11 +32,49 @@ const AddPost = () => {
   const subjCollection = firebase.firestore().collection("Users").doc(documentName);
   const getCollection = (res) => {
       console.log(res.data());  // {"address": "", "email": "Judas@gmail.com", "password": "1111", "pets": [], "phone": "", "posts": [], "profile_url": "", "username": "Judas"}
+      let dataUser = res.data();
+
+
+      // สร้างชื่อ post ที่ unique แล้วเก็บไว้ใน DB ของ User
       const timestamp = new Date();
       const formattedTimestamp = timestamp.toISOString().replace(/[:.]/g, '');
       const postName = `${documentName}_${formattedTimestamp}`; // postName เช่น Judas@gmail.com_2024-03-10T114736465Z
-      
-      
+      let newPost = [...dataUser.posts];
+      newPost.push(postName)
+
+      console.log("newPost : " , newPost);
+
+
+      const subjCollection_post = firebase.firestore().collection("Post");
+      const getCollection = (querySnapshot) => {
+        querySnapshot.forEach((res) => 
+        {
+          console.log(res.id); // res.id คือ ชื่อ Document ใน DB
+          console.log(res.data());  // จะได้ข้อมูลของแต่ละ res.id หรือข้อมูลข้างใน Document มา
+        });
+      }
+      const unsubscribe = subjCollection.onSnapshot(getCollection);
+
+
+      // subjCollection
+      // .set({
+      //     address:dataUser.address,
+      //     email: dataUser.email,
+      //     password: dataUser.password,
+      //     pets: dataUser.pets,
+      //     phone: dataUser.phone,
+      //     posts: newPost,
+      //     profile_url:dataUser.profile_url,
+      //     username: dataUser.username,
+      // })
+      // .then(() => {
+      //     // navigation.pop();
+      // }).catch(() => {
+      //     alert("ยูเซอร์ไม่ถูก Add");
+      // })
+
+
+
   }
   
   const addPost = () => {

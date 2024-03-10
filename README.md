@@ -29,11 +29,17 @@ const documentName = useSelector( (state) => state.myReducer.doc_name ); ; // �
 
 ---
 
-## กรณีอยากอ้างอิง Firebase
-import firebase from "../firebase/firebaseDB";
-
-<!-- FireBase -->
+## UseState
 ```JS
+import React, { useEffect, useState } from "react";
+const [userEmail , setUserEmail] = useState('');
+```
+
+---
+
+## กรณีอยากอ้างอิง Firebase
+```JS
+import firebase from "../firebase/firebaseDB";
 const subjCollection = firebase.firestore().collection("Users");
 const getCollection = (querySnapshot) => {
     querySnapshot.forEach((res) => 
@@ -42,30 +48,6 @@ const getCollection = (querySnapshot) => {
       console.log(res.data());  // จะได้ข้อมูลของแต่ละ res.id หรือข้อมูลข้างใน Document มา
     });
   }
-```
-
-<!-- กรณีใช้ Document  -->
-```JS
-const subjCollection1 = firebase.firestore().collection("Users").doc("Judas@gmail.com");
-const getCollection = (res) => {
-  console.log(res.id); // res.id คือ ชื่อ Document ใน DB
-  console.log(res.data());  // จะได้ข้อมูลของแต่ละ res.id หรือข้อมูลข้างใน Document มา
-}
-```
-
-
-## findUser คือ กรณีอยากให้เมื่อกด ปุ่ม เช่น Log in ให้ทำการค้นหาใน DB 
-```JS
-const findUser = () => {
-const unsubscribe = subjCollection.onSnapshot(getCollection);
-return () => {
-    unsubscribe(); // ในบางกรณี, คุณต้องการทำงานบางอย่าง (เช่น, unsubscribe จาก Firebase, หรือทำความสะอาดข้อมูลที่ไม่ได้ใช้ = Unmounting (การลบ component ออกจาก DOM)
-    };
-};
-```
-
-## ถ้าอยากให้ ค้นหา Db ทันทีที่เปิดหน้าจะใช้ useEffect
-```JS
 useEffect(() => {
 //  ทำงานที่ควรทำหลังจาก component ถูกเรนเดอร์
 const unsubscribe = subjCollection.onSnapshot(getCollection);
@@ -77,10 +59,14 @@ return () => {
 
 ---
 
-## UseState
+## กรณีเรียกใช้ DB ผ่าน ปุ่มกด
 ```JS
-import React, { useEffect, useState } from "react";
-const [userEmail , setUserEmail] = useState('');
+const findUser = () => {
+const unsubscribe = subjCollection.onSnapshot(getCollection);
+return () => {
+    unsubscribe(); // ในบางกรณี, คุณต้องการทำงานบางอย่าง (เช่น, unsubscribe จาก Firebase, หรือทำความสะอาดข้อมูลที่ไม่ได้ใช้ = Unmounting (การลบ component ออกจาก DOM)
+    };
+};
 ```
 
 ---
@@ -99,6 +85,31 @@ const UpdateData = () => {
       alert("ยูเซอร์ไม่ถูก Add");
   })
 }
+```
+
+## Read ทุก Collection
+```JS
+const subjCollection = firebase.firestore().collection("Users");
+const getCollection = (querySnapshot) => {
+  querySnapshot.forEach((res) => 
+  {
+    console.log(res.id); // res.id คือ ชื่อ Document ใน DB
+    console.log(res.data());  // จะได้ข้อมูลของแต่ละ res.id หรือข้อมูลข้างใน Document มา
+  });
+}
+const unsubscribe = subjCollection.onSnapshot(getCollection);
+```
+
+---
+
+## Read แค่ Document เดียว
+```JS
+const subjCollection = firebase.firestore().collection("Users").doc("Judas@gmail.com");
+const getCollection = (res) => {
+  console.log(res.id); // res.id คือ ชื่อ Document ใน DB
+  console.log(res.data());  // จะได้ข้อมูลของแต่ละ res.id หรือข้อมูลข้างใน Document มา
+}
+const unsubscribe = subjCollection.onSnapshot(getCollection);
 ```
 
 ---
