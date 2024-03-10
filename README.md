@@ -37,6 +37,21 @@ const [userEmail , setUserEmail] = useState('');
 
 ---
 
+## TextInput & UseState
+```JS
+import React, { useState } from 'react';
+import { TextInput } from 'react-native';
+const [text, setText] = useState("");
+<TextInput
+  placeholder="Type here..."
+  onChangeText={setText}
+  value={text}
+  style={{  }}
+/>
+```
+
+---
+
 ## กรณีอยากอ้างอิง Firebase
 ```JS
 import firebase from "../firebase/firebaseDB";
@@ -71,7 +86,7 @@ return () => {
 
 ---
 
-## Update ข้อมูลใน DB ⛩️⛩️⛩️
+## เพิ่มข้อมูลใหม่ ใน DB ⛩️⛩️⛩️
 ```JS
 const UpdateData = () => {
   subjCollection.doc(point)
@@ -85,6 +100,22 @@ const UpdateData = () => {
       alert("ยูเซอร์ไม่ถูก Add");
   })
 }
+```
+
+---
+
+## Update ข้อมูลใน DB ⛩️⛩️⛩️
+```JS
+subjCollection_User
+.update({
+  posts: newPost,
+})
+.then(() => {
+  console.log("อัพเดต");
+})
+.catch((error) => {
+  console.error("เกิดไรขึ้น? ", error);
+});
 ```
 
 ## Read ทุก Collection

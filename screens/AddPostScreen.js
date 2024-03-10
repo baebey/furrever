@@ -21,68 +21,82 @@ const colors = {
 
 const AddPost = () => {
 
-  // State
+  // State Input
   const [image, setImage] = useState("");
+  const [text, setText] = useState("");
+
+  // ข้อมูล User
+  const [userName , setUserName] = useState("");
+  const [profile_url , setProfile_url] = useState("");
+  const [post , setPost] = useState([]);
+  
+
 
   // Redux
-  const documentName = useSelector( (state) => state.myReducer.doc_name ); ; // ชื่อ document ของ user คนนี้
+  const documentName = useSelector((state) => state.myReducer.doc_name) || ""; // Default value to an empty string if undefined
+  // console.log("documentName 🧧🧧🧧" , documentName);
 
 
-  
-  const subjCollection = firebase.firestore().collection("Users").doc(documentName);
-  const getCollection = (res) => {
-      console.log(res.data());  // {"address": "", "email": "Judas@gmail.com", "password": "1111", "pets": [], "phone": "", "posts": [], "profile_url": "", "username": "Judas"}
-      let dataUser = res.data();
-
-
-      // สร้างชื่อ post ที่ unique แล้วเก็บไว้ใน DB ของ User
-      const timestamp = new Date();
-      const formattedTimestamp = timestamp.toISOString().replace(/[:.]/g, '');
-      const postName = `${documentName}_${formattedTimestamp}`; // postName เช่น Judas@gmail.com_2024-03-10T114736465Z
-      let newPost = [...dataUser.posts];
-      newPost.push(postName)
-
-      console.log("newPost : " , newPost);
-
-
-      const subjCollection_post = firebase.firestore().collection("Post");
-      const getCollection = (querySnapshot) => {
-        querySnapshot.forEach((res) => 
-        {
-          console.log(res.id); // res.id คือ ชื่อ Document ใน DB
-          console.log(res.data());  // จะได้ข้อมูลของแต่ละ res.id หรือข้อมูลข้างใน Document มา
-        });
-      }
-      const unsubscribe = subjCollection.onSnapshot(getCollection);
-
-
-      // subjCollection
-      // .set({
-      //     address:dataUser.address,
-      //     email: dataUser.email,
-      //     password: dataUser.password,
-      //     pets: dataUser.pets,
-      //     phone: dataUser.phone,
-      //     posts: newPost,
-      //     profile_url:dataUser.profile_url,
-      //     username: dataUser.username,
-      // })
-      // .then(() => {
-      //     // navigation.pop();
-      // }).catch(() => {
-      //     alert("ยูเซอร์ไม่ถูก Add");
-      // })
-
-
+  const subjCollection_User = firebase.firestore().collection("Users").doc(documentName);
+  const getCollection_User = (res) => {
+    // res.data() =  {"address": "", "email": "Judas@gmail.com", "password": "1111", "pets": [], "phone": "", "post": [], "profile_url": "", "username": "Judas"}
+    console.log(res.data());
+    setUserName(res.data().username)
+    setProfile_url(res.data().profile_url)
+    setPost([...res.data().post])
 
   }
+
+
+    
+
+  // ​‌‌‍ขั้น 𝟮 สร้าง 𝗣𝗼𝘀𝘁 ใน 𝗗𝗕 𝗣𝗼𝘀𝘁​⁡
+// res.data() = {"comments": [{"ment": "woof woof", "responder": [DocumentReference]}, {"ment": "bark bark", "responder": [DocumentReference]}], "img": "https://firec7c", "txt": "อยากเป้นหมา"}
+  const subjCollection_post = firebase.firestore().collection("Post");
+  console.log("addPost 🧧🧧🧧");
+  console.log(image);
+  console.log(text);
+          
+
+
   
   const addPost = () => {
-    console.log(documentName);
-    const unsubscribe = subjCollection.onSnapshot(getCollection);
-    return () => {
-          unsubscribe(); // ในบางกรณี, คุณต้องการทำงานบางอย่าง (เช่น, unsubscribe จาก Firebase, หรือทำความสะอาดข้อมูลที่ไม่ได้ใช้ = Unmounting (การลบ component ออกจาก DOM)
-        };
+    console.log("addPost 🧧🧧🧧");
+    //⁡⁣⁢⁣ ​‌‌‍ขั้น แรก สร้างชื่อ post ที่ unique แล้วเก็บไว้ใน DB ของ User⁡⁡​
+    const timestamp = new Date();
+    const formattedTimestamp = timestamp.toISOString().replace(/[:.]/g, '');
+    const postName = `${documentName}_${formattedTimestamp}`; // postName เช่น Judas@gmail.com_2024-03-10T114736465Z
+    // นำ ชื่อ Post ที่สร้าง มาเก็บไว้ใน Users 
+    let newPost = [...post];
+    newPost.push(postName) // newPost เช่น newPost =  ["Judas@gmail.com_2024-03-10T122519317Z" , "Judas@gmail.com_2024-03-10T122608354Z"]
+
+    subjCollection_User
+    .update({
+      posts: newPost,
+    })
+    .then(() => {
+      console.log("User document updated successfully with the new post.");
+    })
+    .catch((error) => {
+      console.error("Error updating user document:", error);
+      alert("User not updated. An error occurred.");
+    });
+
+    // ​‌‌‍ขั้น 𝟮 สร้าง 𝗣𝗼𝘀𝘁 ใน 𝗗𝗕 𝗣𝗼𝘀𝘁
+    // subjCollection_post.doc(postName)
+    // .set({
+    //     comments: [],
+    //     img: image,
+    //     txt:text,
+    // })
+    // .then(() => {
+    //     navigation.pop();
+    // }).catch(() => {
+    //     alert("ยูเซอร์ไม่ถูก Add");
+    // })
+
+
+    
   };
 
 
@@ -102,6 +116,7 @@ const AddPost = () => {
         }
       }
     })();
+    subjCollection_User.onSnapshot(getCollection_User);
   }, []);
 
   const pickImage = async () => {
@@ -135,7 +150,8 @@ const AddPost = () => {
   };
   
   
-  
+
+
   
 
   return (
@@ -144,14 +160,16 @@ const AddPost = () => {
       <View style={{ padding: 10 }}>
         {/* User Avatar and Name */}
         <View style={styles.userInfo}>
-          <Image source={require('../assets/user1.jpg')} style={styles.userAvatar} />
-          <Text style={styles.username}>Anchisa Cherdsattayanukul</Text>
+          <Image source={{ uri: profile_url }} style={styles.userAvatar} />
+          <Text style={styles.username}>{userName}</Text>
         </View>
 
         {/* Area for Typing */}
         <TextInput
-          placeholder="คิดไรอยู่จ๊ะ"
+          placeholder="เอิ่ม"
           multiline
+          onChangeText={setText}
+          value={text}
           style={{ marginTop: 10, height: 200, borderWidth: 1, textAlignVertical: 'top', padding: 10, borderColor: '#D9D9D9' }}
         />
 
