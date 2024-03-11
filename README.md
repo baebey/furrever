@@ -165,6 +165,31 @@ subjCollection.onSnapshot(getCollection);
 
 ---
 
+## Alert
+```JS
+import { Alert } from 'react-native';
+const createAlert = () => {
+  Alert.alert(
+    'Alert Title',
+    'Alert Message',
+    [
+      {
+        text: 'OK',
+        onPress: () => console.log('OK Pressed'),
+      },
+      {
+        text: 'Cancel',
+        onPress: () => console.log('Cancel Pressed'),
+        style: 'cancel', // This makes the button look like a "cancel" button
+      },
+    ],
+    { cancelable: true }
+  );
+};
+```
+
+---
+
 ## อ้างอิง
 Icon &emsp; https://icons.expo.fyi/Index
 

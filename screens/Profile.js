@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -12,21 +12,73 @@ import {
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 
+// Redux
+import { useSelector, useDispatch } from "react-redux";
+
+// Firebase
+import firebase from "../firebase/firebaseDB";
+
+
 const Profile = ({ navigation }) => {
+
+  const documentName = useSelector( (state) => state.myReducer.doc_name ); ; // ชื่อ document ของ user คนนี้
+
+  //*-----------------เพิ่มตรงนี้-----------------//
+  const [username, setUsername] = React.useState("");
+  const [phone, setPhone] = React.useState("");
+  const [address, setAddress] = React.useState("");
+  const [profile, setProfile] = React.useState("");
+  
+  const [myPets, setMyPets] = React.useState([]);
+
+  const userData = firebase.firestore().collection("Users");
+
+  const userID = documentName;
+
+  const getCollection = (querySnapshot) => {
+    querySnapshot.forEach((res) => {
+      // console.log("res: ", res.id); 
+      // console.log("res.data() : ", res.data()); 
+        
+        if(res.id === userID){
+          setUsername(res.data().username);
+          setPhone(res.data().phone);
+          setAddress(res.data().address);
+          setProfile(res.data().profile_url);
+          setMyPets(res.data().pets);
+          console.log("........🦣🦣🦣 =" , myPets)
+        }
+        
+    });
+  };
+
+  useEffect(() => {
+    const unsubscribe = userData.onSnapshot(getCollection);
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+  //*-----------------------------------------//
+
+
+
   return (
     <SafeAreaView style={styles.container}>
+    <ScrollView>
       <View style={styles.header}></View>
       
       <View style={{ paddingBottom: '3%'}}>
-          <Image source={{ uri: "https://hips.hearstapps.com/hmg-prod/images/russian-blue-royalty-free-image-1658451809.jpg",}} style={styles.avatar} />
+          <Image source={{ uri:
+            profile 
+            ,}} style={styles.avatar} />
           {/* <View style={{backgroundColor:'cyan' ,}}> */}
             <View style={styles.txt}>
-              <Text style={{ fontSize: 30, alignSelf: "center" }}>Cat</Text>
+              <Text style={{ fontSize: 30, alignSelf: "center" }}>{ username }</Text>
               <Text style={{ fontSize: 15, color: "grey", alignSelf: "center", paddingTop: 10, }}>
-                0929292929
+                { phone }
               </Text>
-              <Text style={{ fontSize: 15, color: "grey", alignSelf: "center", paddingTop: 10, }}>
-                Meow
+              <Text style={{ fontSize: 15, coloAr: "grey", alignSelf: "center", paddingTop: 10, }}>
+              { address }
               </Text>
             </View>
         {/* </View> */}
@@ -37,7 +89,7 @@ const Profile = ({ navigation }) => {
         <View style={{}}>
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate("ProfileEdit", { prev: "Profile", id: 25 });
+                navigation.navigate("ProfileEdit", { prev: "Profile", userInfo: userData, userID: userID});
               }}
               style={styles.btn}
             >
@@ -48,7 +100,7 @@ const Profile = ({ navigation }) => {
 
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate("ListMyPet", { prev: "Profile", id: 25 });
+                navigation.navigate("ListMyPet", { prev: "Profile", myPets: myPets, userID: userID });
               }}
               style={styles.btn}
             >
@@ -59,7 +111,7 @@ const Profile = ({ navigation }) => {
 
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate("Authen", { prev: "Profile", id: 25 });
+                navigation.navigate("Authen", { prev: "Profile", });
               }}
               style={styles.btn}
             >
@@ -68,8 +120,9 @@ const Profile = ({ navigation }) => {
             </TouchableOpacity>
         </View>
         
-      
+      </ScrollView>
     </SafeAreaView>
+
   );
 };
 
@@ -80,6 +133,7 @@ const colors = {
   pinky: "#fadacb",
   ivory: "#f8f3df",
 };
+
 
 const styles = StyleSheet.create({
   container: {
@@ -108,7 +162,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.sun,
     borderRadius: 50,
     width: 300,
-    height: 70,
+    height: 65,
     // padding: 30,
     alignSelf: "center",
     flexDirection: "row",
@@ -122,5 +176,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
 });
+
 
 export default Profile;

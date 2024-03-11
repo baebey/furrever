@@ -8,7 +8,7 @@ import * as ImagePicker from 'expo-image-picker';
 
 
 
-
+// Storage เรื่อง Upload รูป
 import { storage } from '../firebase/testDatabase';
 import { getDownloadURL ,uploadBytes, ref, deleteObject } from 'firebase/storage';
 
