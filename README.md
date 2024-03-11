@@ -37,6 +37,15 @@ const [userEmail , setUserEmail] = useState('');
 
 ---
 
+## Navigate
+```JS
+navigation.pop(); ย้อนกลับ
+navigation.goBack(2); เหมือน pop แต่ตัวนี้สามารถระบุจำนวนย้อนกลับได้ เช่น ย้อนกลับไป 2 ขั้นตอน แต่ถ้า navigation.goBack(); เป็นแค่ ย้อนกลับไปหน้าก่อนหน้านี้
+navigation.popToTop(); ย้อนกลับไปหน้าแรกที่อยู่บน stack.
+```
+
+---
+
 ## TextInput & UseState
 ```JS
 import React, { useState } from 'react';
@@ -48,6 +57,16 @@ const [text, setText] = useState("");
   value={text}
   style={{  }}
 />
+```
+
+---
+
+## Image
+```JS
+<Image source={{ uri: "https://hips.hearstapps.com/hmg-prod/images/russian-blue-royalty-free-image-1658451809.jpg",}} style={{}} />
+{
+  imageUpload && (<Image source={{ uri: imageUpload,}} style={{}} />)
+}
 ```
 
 ---

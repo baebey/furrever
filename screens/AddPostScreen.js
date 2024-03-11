@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Image, Platform, Alert, SafeAreaView, ScrollView,StatusBar } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Image, Platform, Alert, SafeAreaView, ScrollView,StatusBar, ActivityIndicator } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { StyleSheet } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
+
+
+import { storage } from '../firebase/testDatabase';
+import { getDownloadURL ,uploadBytes, ref, deleteObject } from 'firebase/storage';
+
 
 // Redux
 import { useSelector, useDispatch } from "react-redux";
@@ -19,11 +24,14 @@ const colors = {
 };
 
 
-const AddPost = () => {
+const AddPost = ({ navigation }) => {
 
   // State Input
   const [image, setImage] = useState("");
   const [text, setText] = useState("");
+
+  // const [isloading, setloading] = useState(false)
+  const [imageUpload, setImageUpload] = useState("");
 
   // ข้อมูล User
   const [userName , setUserName] = useState("");
@@ -53,9 +61,7 @@ const AddPost = () => {
   // ​‌‌‍ขั้น 𝟮 สร้าง 𝗣𝗼𝘀𝘁 ใน 𝗗𝗕 𝗣𝗼𝘀𝘁​⁡
 // res.data() = {"comments": [{"ment": "woof woof", "responder": [DocumentReference]}, {"ment": "bark bark", "responder": [DocumentReference]}], "img": "https://firec7c", "txt": "อยากเป้นหมา"}
   const subjCollection_post = firebase.firestore().collection("Post");
-  console.log("addPost 🧧🧧🧧");
-  console.log(image);
-  console.log(text);
+
           
 
 
@@ -83,17 +89,21 @@ const AddPost = () => {
     });
 
     // ​‌‌‍ขั้น 𝟮 สร้าง 𝗣𝗼𝘀𝘁 ใน 𝗗𝗕 𝗣𝗼𝘀𝘁
-    // subjCollection_post.doc(postName)
-    // .set({
-    //     comments: [],
-    //     img: image,
-    //     txt:text,
-    // })
-    // .then(() => {
-    //     navigation.pop();
-    // }).catch(() => {
-    //     alert("ยูเซอร์ไม่ถูก Add");
-    // })
+    subjCollection_post.doc(postName)
+    .set({
+        comments: [],
+        img: imageUpload,
+        txt: text,
+        likes:0,
+        countComment:0,
+        poster:documentName,
+    })
+    .then(() => {
+        navigation.pop();
+    }).catch(() => {
+        alert("ยูเซอร์ไม่ถูก Add");
+    })
+
 
 
     
@@ -120,6 +130,7 @@ const AddPost = () => {
   }, []);
 
   const pickImage = async () => {
+    console.log("pickImage 🟢🟢🟢");
     try {
       const result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -127,27 +138,84 @@ const AddPost = () => {
         aspect: [4, 3],
         quality: 1,
       });
+      
   
       console.log('ImagePicker Result:', result);
-  
-      if (!result.cancelled) {
-        if (result.uri) {
-          setImage(result.uri);
-          console.log('Image URI:', result.uri);
-        } else if (result.assets && result.assets.length > 0) {
-          // Alternative approach: Check assets array
-          setImage(result.assets[0].uri);
-          console.log('Image URI (Alternative):', result.assets[0].uri);
-        } else {
-          console.log('Error: Image URI is undefined');
-        }
-      } else {
-        console.log('Image selection cancelled');
+      setImageUpload(result.uri);
+      
+      if (!result.canceled) {
+        console.log("result.assets[0].uri ", result.assets[0].uri );
+        const uploadURL = await uploadImageAsync(result.assets[0].uri)
+        setImageUpload(uploadURL);
+        console.log("image 🎋🎋 => ",uploadURL); // ได้ url มาตรงupload
+        // setInterval(() => {
+        //   setloading(false)
+        // }, 1000);
       }
-    } catch (error) {
-      console.error('Error picking image:', error);
+
+      else{
+        console.log("ทำไม");
+        setImageUpload(null)
+        // setInterval(()=>{
+        //   setloading(false);
+        // },2000);
+      }
+
+
+
+      // if (!result.cancelled) {
+      //   if (result.uri) {
+      //     setImage(result.uri);
+      //     console.log('Image URI:', result.uri);
+      //   } else if (result.assets && result.assets.length > 0) {
+      //     // Alternative approach: Check assets array
+      //     setImage(result.assets[0].uri);
+      //     console.log('Image URI (Alternative):', result.assets[0].uri);
+      //   } else {
+      //     console.log('Error: Image URI is undefined');
+      //   }
+      // } else {
+      //   console.log('Image selection cancelled');
+      // }
+    } 
+    catch (error) {
+      console.error('ทำไมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมม:', error);
     }
   };
+
+  
+  
+  const uploadImageAsync = async (uri) => {
+    const blob = await new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+      xhr.onload = function () {
+        resolve(xhr.response);
+      };
+      xhr.onerror = function (e) {
+        console.log(e);
+        reject(new TypeError("Network request failed"));
+      };
+      xhr.responseType = "blob";
+      xhr.open("GET", uri, true);
+      xhr.send(null);
+    });
+
+    try{
+      const storageRef = ref(storage, `Posts/image-`+Date.now());
+      //  uploadBytes เป็น ฟังชัน upload ไปยัง storage
+      const result = await uploadBytes(storageRef, blob);
+
+      // We're done with the blob, close and release it
+      blob.close();
+      return await getDownloadURL(storageRef);
+
+    }catch(err){
+      alert(err+"")
+    }
+   };
+
+
+    
   
   
 
@@ -178,14 +246,20 @@ const AddPost = () => {
           <Icon name="camera-outline" size={20} color="#000" />
           <Text style={{ marginLeft: 5 }}>Upload Photo</Text>
         </TouchableOpacity>
-
         <View >
-          <Image resizeMode='contain' style={styles.img} source={{ uri: image }}></Image>
+          
+          {
+            imageUpload && (<Image source={{ uri: imageUpload,}} style={styles.img} />)
+          }
+
         </View>
+
+
+        
 
         {/* Add Post Button */}
         <TouchableOpacity
-          style={{ backgroundColor: colors.sun, padding: 10, alignItems: 'center' }}
+          style={{ backgroundColor: colors.sun, padding: 10, alignItems: 'center', marginTop: "5%" }}
           onPress={addPost}
         >
           <Text style={{ color: '#fff' }}>Add Post</Text>

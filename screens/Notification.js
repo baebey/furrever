@@ -24,8 +24,8 @@ export default function Notification({ navigation }) {
 
   const getCollection = (res) => {
     console.log("🌺🌺🌺" , documentName);
-    // console.log(res.id); // res.id คือ ชื่อ Document ใน DB
-    // console.log(res.data().noti);  // จะได้ข้อมูลของแต่ละ res.id หรือข้อมูลข้างใน Document มา
+    console.log(res.id); // res.id คือ ชื่อ Document ใน DB
+    console.log(res.data());  // จะได้ข้อมูลของแต่ละ res.id หรือข้อมูลข้างใน Document มา
     setNotiData([...res.data().noti])
 
   }
@@ -63,6 +63,7 @@ export default function Notification({ navigation }) {
         <Text style={{color: 'black', fontSize: 28, marginBottom: 10}}>การแจ้งเตือน</Text>
       </View>
 
+      { notiData.length==0 && <Text>ยังไม่มีการแจ้งเตือนใด ๆ</Text> }
       {/* <ScrollView style={{marginBottom: 200, backgroundColor:'cyan'}}> */}
           <FlatList
             style={{ marginTop: 10 }}
