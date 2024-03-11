@@ -5,6 +5,10 @@ import { StyleSheet } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 
 
+
+
+
+
 import { storage } from '../firebase/testDatabase';
 import { getDownloadURL ,uploadBytes, ref, deleteObject } from 'firebase/storage';
 
@@ -144,6 +148,7 @@ const AddPost = ({ navigation }) => {
       setImageUpload(result.uri);
       
       if (!result.canceled) {
+        
         console.log("result.assets[0].uri ", result.assets[0].uri );
         const uploadURL = await uploadImageAsync(result.assets[0].uri)
         setImageUpload(uploadURL);
@@ -161,22 +166,6 @@ const AddPost = ({ navigation }) => {
         // },2000);
       }
 
-
-
-      // if (!result.cancelled) {
-      //   if (result.uri) {
-      //     setImage(result.uri);
-      //     console.log('Image URI:', result.uri);
-      //   } else if (result.assets && result.assets.length > 0) {
-      //     // Alternative approach: Check assets array
-      //     setImage(result.assets[0].uri);
-      //     console.log('Image URI (Alternative):', result.assets[0].uri);
-      //   } else {
-      //     console.log('Error: Image URI is undefined');
-      //   }
-      // } else {
-      //   console.log('Image selection cancelled');
-      // }
     } 
     catch (error) {
       console.error('ทำไมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมม:', error);
@@ -223,48 +212,52 @@ const AddPost = ({ navigation }) => {
   
 
   return (
-    <SafeAreaView>
-      <ScrollView>
-      <View style={{ padding: 10 }}>
-        {/* User Avatar and Name */}
-        <View style={styles.userInfo}>
-          <Image source={{ uri: profile_url }} style={styles.userAvatar} />
-          <Text style={styles.username}>{userName}</Text>
-        </View>
+    <SafeAreaView style={{flex:1}}>
+      <ScrollView style={{ padding :15, }}>
+        <View style={{ padding: 10,  }}>
+          {/* User Avatar and Name */}
+          <View style={styles.userInfo}>
+            <Image source={{ uri: profile_url }} style={styles.userAvatar} />
+            <Text style={styles.username}>{userName}</Text>
+          </View>
 
-        {/* Area for Typing */}
-        <TextInput
-          placeholder="เอิ่ม"
-          multiline
-          onChangeText={setText}
-          value={text}
-          style={{ marginTop: 10, height: 200, borderWidth: 1, textAlignVertical: 'top', padding: 10, borderColor: '#D9D9D9' }}
-        />
+          {/* Area for Typing */}
+          <TextInput
+            placeholder="เอิ่ม"
+            multiline
+            onChangeText={setText}
+            value={text}
+            style={{ marginTop: 10, height: 200, borderWidth: 1, textAlignVertical: 'top', padding: 10, borderColor: '#D9D9D9' }}
+          />
 
-        {/* Upload Photo */}
-        <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center', marginTop: 10 }} onPress={pickImage}>
-          <Icon name="camera-outline" size={20} color="#000" />
-          <Text style={{ marginLeft: 5 }}>Upload Photo</Text>
-        </TouchableOpacity>
-        <View >
+          {/* Upload Photo */}
+          <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center', marginTop: 10 }} onPress={pickImage}>
+            <Icon name="camera-outline" size={20} color="#000" />
+            <Text style={{ marginLeft: 5 }}>Upload Photo</Text>
+          </TouchableOpacity>
+          <View style={{  paddingTop: 20, }}>
+            
+            {
+              imageUpload && (<Image source={{ uri: imageUpload,}} style={{
+                width: '90%',
+                height: 200,
+                alignSelf: 'center'
+              }} />)
+            }
+          </View>
+
+            {/* Add Post Button */}
+          <TouchableOpacity
+            style={{ backgroundColor: colors.sun, padding: 10, alignItems: 'center', marginTop: "5%" }}
+            onPress={addPost}
+          >
+            <Text style={{ color: '#fff' }}>Add Post</Text>
+          </TouchableOpacity>
+
           
-          {
-            imageUpload && (<Image source={{ uri: imageUpload,}} style={styles.img} />)
-          }
 
+          
         </View>
-
-
-        
-
-        {/* Add Post Button */}
-        <TouchableOpacity
-          style={{ backgroundColor: colors.sun, padding: 10, alignItems: 'center', marginTop: "5%" }}
-          onPress={addPost}
-        >
-          <Text style={{ color: '#fff' }}>Add Post</Text>
-        </TouchableOpacity>
-      </View>
       </ScrollView>
     </SafeAreaView>
   );

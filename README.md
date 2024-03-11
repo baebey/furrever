@@ -73,6 +73,7 @@ const [text, setText] = useState("");
 
 ## กรณีอยากอ้างอิง Firebase
 ```JS
+import React, { useEffect, useState } from 'react';
 import firebase from "../firebase/firebaseDB";
 const subjCollection = firebase.firestore().collection("Users");
 const getCollection = (querySnapshot) => {
