@@ -12,14 +12,35 @@ import { SelectList } from "react-native-dropdown-select-list";
 import * as ImagePicker from "expo-image-picker";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import firebase from "../../firebase/firebaseDB";
+
 export default function UploadPets() {
+  // database
+  const documentName = useSelector((state) => state.myReducer.doc_name); // ชื่อ document ของ user คนนี้
+  const subjCollection = firebase
+    .firestore()
+    .collection("Users")
+    .doc(documentName);
+  const getCollection = (res) => {
+    console.log(res.id); // res.id คือ ชื่อ Document ใน DB
+    console.log(res.data()); // จะได้ข้อมูลของแต่ละ res.id หรือข้อมูลข้างใน Document มา
+
+    const data = res.data();
+    console.log(data.pets);
+  };
+  subjCollection.onSnapshot(getCollection);
+
+  const [data, setData] = useState([]);
+
   // Dropdown
   const [selected, setSelected] = useState("");
 
-  const data = [
-    { key: "1", value: "Kaitoon" },
-    { key: "2", value: "Kaotom" },
-  ];
+  // const data = [
+  //   { key: "1", value: "Kaitoon" },
+  //   { key: "2", value: "Kaotom" },
+  // ];
 
   // Image picker
   const [image, setImage] = useState(null);
@@ -76,64 +97,57 @@ export default function UploadPets() {
           placeholder="เลือกสัตว์เลี้ยงของคุณ"
         />
       </View>
+
       <View style={styles.picker}>
         <TouchableOpacity style={styles.ImagePick} onPress={pickImage}>
           {/* <Text>เลือกรูปภาพ</Text> */}
           {image && <Image source={{ uri: image }} style={styles.Image} />}
         </TouchableOpacity>
       </View>
-      <View>
-        <View style={styles.textInput}>
-          <Image
-            style={styles.iconTextInput}
-            source={require("../assets/mapMark.png")}
-          />
-          <Text>สถานที่ที่คาดว่าหาย</Text>
-        </View>
-        <TextInput
-          style={styles.input}
-          onChangeText={onChangeTextPlace}
-          value={textPlace}
+
+      {/* วันที่ */}
+      <View style={styles.textInput}>
+        <Image
+          style={styles.iconTextInput}
+          source={require("../../assets/dayMark.png")}
         />
-
-        <View style={styles.textInput}>
-          <Image
-            style={styles.iconTextInput}
-            source={require("../assets/dayMark.png")}
-          />
-          <Text>วันที่ที่หาย</Text>
-        </View>
-        <TouchableOpacity onPress={() => setShowDatePicker(true)}>
-          <TextInput style={styles.input} value={textDay} editable={false} />
-        </TouchableOpacity>
-        {showDatePicker && (
-          <DateTimePicker
-            value={date}
-            mode="date"
-            display="default"
-            onChange={handleDateChange}
-          />
-        )}
-
-        <View style={styles.textInput}>
-          <Image
-            style={styles.iconTextInput}
-            source={require("../assets/timeMark.png")}
-          />
-          <Text>เวลาที่หาย</Text>
-        </View>
-        <TouchableOpacity onPress={() => setShowTimePicker(true)}>
-          <TextInput style={styles.input} value={textTime} editable={false} />
-        </TouchableOpacity>
-        {showTimePicker && (
-          <DateTimePicker
-            value={date}
-            mode="time"
-            display="default"
-            onChange={handleTimeChange}
-          />
-        )}
+        <Text>วันที่ที่หาย</Text>
       </View>
+
+      <TouchableOpacity onPress={() => setShowDatePicker(true)}>
+        <TextInput style={styles.input} value={textDay} editable={false} />
+      </TouchableOpacity>
+      {showDatePicker && (
+        <DateTimePicker
+          value={date}
+          mode="date"
+          display="default"
+          onChange={handleDateChange}
+        />
+      )}
+
+      {/* เวลา */}
+      <View style={styles.textInput}>
+        <Image
+          style={styles.iconTextInput}
+          source={require("../../assets/timeMark.png")}
+        />
+        <Text>เวลาที่หาย</Text>
+      </View>
+      <TouchableOpacity onPress={() => setShowTimePicker(true)}>
+        <TextInput style={styles.input} value={textTime} editable={false} />
+      </TouchableOpacity>
+
+      {showTimePicker && (
+        <DateTimePicker
+          value={date}
+          mode="time"
+          display="default"
+          onChange={handleTimeChange}
+        />
+      )}
+
+      {/* ปุ่ม Post ด้านล่าง */}
       <View style={styles.buttonPost}>
         <TouchableOpacity
           style={styles.button}
@@ -158,7 +172,7 @@ const styles = StyleSheet.create({
   },
   LocationPicker: {
     borderRadius: 15,
-    backgroundColor: "#E2CC9B",
+    // backgroundColor: "#E2CC9B",
   },
   picker: {
     justifyContent: "center",

@@ -4,7 +4,11 @@ import { TouchableOpacity, Image } from "react-native";
 export default function BtnNewHouse(props) {
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.Btn} activeOpacity={0.5}>
+      <TouchableOpacity
+        style={styles.Btn}
+        activeOpacity={0.5}
+        onPress={() => props.onPress()}
+      >
         <Image source={props.image} style={styles.ImageIconStyle} />
         <Text style={styles.BtnText}> {props.name} </Text>
       </TouchableOpacity>

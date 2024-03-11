@@ -1,0 +1,45 @@
+## หลังจาก Load Branch
+```
+npm install
+npx react-native start --reset-cache
+npx expo start
+```
+
+
+## ลงเพิ่ม
+```
+npm install deprecated-react-native-prop-types
+npm install react-native-tab-view 
+npm install @react-native-community/datetimepicker
+npx expo install @react-native-community/datetimepicker
+npm install firebase
+npm install --save redux react-redux 
+
+
+```
+
+
+---
+
+## กรณีอยากอ้างอิง Redux
+; Import ก่อน
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from "react-redux";
+const documentName = useSelector( (state) => state.myReducer.doc_name ); ; // ชื่อ document ของ user คนนี้
+
+---
+
+
+## อ้างอิง
+Icon &emsp; https://icons.expo.fyi/Index
+Scrollview &emsp; https://reactnative.dev/docs/scrollview
+Tab-view &emsp; https://reactnavigation.org/docs/tab-view/
+FlatList &emsp; https://reactnative.dev/docs/flatlist
+
+
+## สไลด์
+https://onlearn.it.kmitl.ac.th/course/view.php?id=1274
+Database &emsp; https://onlearn.it.kmitl.ac.th/pluginfile.php/52552/mod_resource/content/9/Ch10_DBConnection.pdf
+NAVIGATION1 &emsp; https://onlearn.it.kmitl.ac.th/pluginfile.php/51338/mod_resource/content/3/Mobile_Ch05_Navigation_1.pdf
+NAVIGATION2 &emsp; https://onlearn.it.kmitl.ac.th/pluginfile.php/51383/mod_resource/content/4/Ch06_Navigation_2.pdf
+
