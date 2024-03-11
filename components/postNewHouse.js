@@ -4,42 +4,69 @@ import React from "react";
 // Import Icon
 import { AntDesign } from "@expo/vector-icons";
 
-// Component
-const postNewHouse = (props) => {
-  const navigation = props.navigation;
+const colors = {
+  mint: "#bad36d",
+  tan: "#e2cc9b",
+  sun: "#faaf6b",
+  pinky: "#fadacb",
+  ivory: "#f8f3df",
+};
 
+// Component
+const postLostPet = (props) => {
   return (
     <TouchableOpacity
       onPress={() => {
-        props.onSelect();
+        console.log(
+          "Ctrl + c มันง่ายนะ แปปๆเสร็จก็จริง แต่ cop โค้ดมาอย่างเดียว แต่ไม่ทำความเข้าใจ ทีหลังก็อย่า cop เลย เพราะมันเละกว่าเดิม"
+        );
       }}
     >
       <View style={styles.list}>
-        {/* ส่วนของรูปภาพ */}
+        {/* ส่วนของรูปภาพด้านซ้าย */}
+        <View style={{ justifyContent: "center" }}>
+          <Image
+            source={{
+              uri: props.pic,
+            }}
+            style={{ width: 130, height: 180, borderRadius: 17 }}
+          />
+        </View>
 
-        <Image
-          source={{
-            uri: "https://media.discordapp.net/attachments/1184089231396716574/1214960360981790730/image_21.png?ex=65fb0302&is=65e88e02&hm=4b2cf485c0e8212e2d2ce2d7d234c9eb8bf5632ddf97872e6a72fa2a092aeb35&=&format=webp&quality=lossless",
-          }}
-          style={{ width: 150, height: 180 }}
-        />
-
-        <View style={{ marginLeft: 20, marginVertical: 10 }}>
+        {/* ส่วนของข้อมูลด้านขวา */}
+        <View style={{ justifyContent: "space-around", paddingHorizontal: 7 }}>
           <Text style={{ fontSize: 20 }}>{props.name}</Text>
           <Text style={styles.fontGreySizeSmall}>
             {props.sex}, {props.year} ปี
           </Text>
-          <View style={styles.details}>
-            <Text style={styles.detail}>รายรละเอียด {props.detail}</Text>
+          <View
+            style={{
+              backgroundColor: colors.sun,
+              paddingVertical: 10,
+              paddingHorizontal: 5,
+              borderRadius: 10,
+              maxWidth: 170,
+              minWidth: 170,
+            }}
+          >
+            <Text style={{ fontSize: 11 }}>
+              <Text style={{ fontWeight: "bold" }}>รายละเอียด :</Text>{" "}
+              {props.detail}
+            </Text>
           </View>
-          <Text style={styles.fontGreySizeSmall}>
+          <Text
+            style={{
+              fontSize: 10,
+              color: "grey",
+              maxWidth: 170,
+              minWidth: 170,
+            }}
+          >
             ติดต่อที่: {props.contact}
           </Text>
-          <Text style={styles.fontSizeSmall}>{props.tel}</Text>
-        </View>
-
-        <View style={{ position: "absolute", right: 10, zIndex: 10000 }}>
-          <AntDesign name="right" size={24} color="grey" />
+          <Text style={styles.fontSizeSmall}>
+            <AntDesign name="phone" size={15} color="black" /> {props.tel}
+          </Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -48,17 +75,20 @@ const postNewHouse = (props) => {
 
 const styles = StyleSheet.create({
   list: {
-    backgroundColor: "#f8f3df",
+    // backgroundColor: "#f8f3df",
+    // backgroundColor:'black',
     flexDirection: "row",
-    alignItems: "center",
+    // alignItems: "center",
+    justifyContent: "space-between",
     borderRadius: 20,
-    padding: 5,
+    // padding: 5,
     borderColor: "#e2cc9b",
-    borderWidth: 3,
-    margin: 5,
+    borderWidth: 1,
+    // margin: 5,
+    // paddingVertical:
   },
   fontGreySizeSmall: {
-    fontSize: 13,
+    fontSize: 12,
     color: "grey",
   },
   fontSizeSmall: {
@@ -66,18 +96,19 @@ const styles = StyleSheet.create({
   },
   details: {
     backgroundColor: "#faaf6b",
-    opacity: 5,
-    borderRadius: 15,
-    width: "100%",
+    // opacity: 5,
+    // borderRadius: 15,
+    // width: "100%",
+
     marginTop: 3,
     marginBottom: 3,
   },
-  detail: {
-    height: 50,
-    marginTop: 8,
-    margin: 5,
-    fontSize: 12,
-  },
+  // detail: {
+  //   height: 50,
+  //   marginTop: 8,
+  //   margin: 5,
+  //   fontSize: 12,
+  // },
 });
 
-export default postNewHouse;
+export default postLostPet;
