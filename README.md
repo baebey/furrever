@@ -1,5 +1,5 @@
-ดูโค้ชโปรเจคที่ branch Fame
+ดู source code โปรเจคที่ branch Fame
 
 ```
-https://github.com/baebey/furrever/tree/furrever
+https://github.com/baebey/furrever/tree/Fame
 ```
