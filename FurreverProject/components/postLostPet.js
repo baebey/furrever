@@ -19,7 +19,7 @@ const postLostPet = (props) => {
 
         <Image
           source={{
-            uri: "https://media.discordapp.net/attachments/1184089231396716574/1214960360583598182/image_16.png?ex=65fb0302&is=65e88e02&hm=3add7e84d71c0b5d9d9c0b1ecdc81a353273bcbfa5c0168c35d03c55b14486f9&=&format=webp&quality=lossless",
+            uri: props.pic,
           }}
           style={{ width: 120, height: 120 }}
         />
