@@ -1,7 +1,7 @@
-<h1 align="center">Furrevert<img src="https://i.kym-cdn.com/photos/images/original/000/869/057/613.gif" width="70px"></h1>
-<p align="center">
+<h1 align="center"> Furrevert <img src="https://64.media.tumblr.com/bddf272082ed5154a77b4848d0ec5860/c04d6a829dccf60c-20/s500x750/942a58e8fe62d4751c9eb06257f6536e68b47812.gif" width="100px"></h1>
+<p align="center" >
 <em>
- Community เฉพาะคนที่ชอบเลี้ยงสัตว์จำพวกหมาและแมว ไว้เป็นเครือข่ายในการแลกเปลี่ยนข้อมูล เช่น การหาที่อยู่ใหม่กับสัตว์เลี้ยง นอกจากนี้ยังมีส่วนสำหรับโพสสัตว์ที่หายไป ซึ่งการมาของแอปพลิเคชั่นนี้จะช่วยให้ผู้คนที่สนใจหมากับแมวมารวมตัวกัน และเกิดกิจกรรมต่างๆทั้งการช่วยเหลือและการแชร์ประสบการณ์ดีๆต่อกัน
+ Community สำหรับกลุ่มคนที่เลี้ยงสัตว์จำพวกหมาและแมว ไว้เป็นเครือข่ายในการแลกเปลี่ยนข้อมูล และสำหรับโพสถามหาสัตว์ที่หายไป ซึ่งการมาของแอปพลิเคชั่นนี้จะช่วยให้ผู้คนที่สนใจหมากับแมวมารวมตัวกัน และเกิดกิจกรรมต่างๆทั้งการช่วยเหลือและการแชร์ประสบการณ์ดีๆต่อกัน
 </em>
 </p>
 
@@ -58,10 +58,19 @@ npm i react-native-elements
 
 ---
 
+## Languages and Tools 
+<p align="left"> 
+ <a href="https://www.figma.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/figma/figma-icon.svg" alt="figma" width="40" height="40"/> </a> 
+ <a href="https://firebase.google.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg" alt="firebase" width="40" height="40"/> </a> 
+ <a href="https://reactnative.dev/" target="_blank" rel="noreferrer"> <img src="https://reactnative.dev/img/header_logo.svg" alt="reactnative" width="40" height="40"/> </a>
+ <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/> </p>
+
+
 ## Figma
 https://www.figma.com/file/jSE3fPtlb9pBcdMRjIimGI/devtool?type=design&node-id=0%3A1&mode=design&t=Z6YfTn8XXL0z9DOq-1
 
-## Firebase
+
+## Firebase 
 https://console.firebase.google.com/u/0/project/furrever-2929/firestore/data/~2FUsers~2FJudas@gmail.com
 
 ## Slide Present
