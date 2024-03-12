@@ -1,6 +1,6 @@
-ดู source code โปรเจค furrever ได้ที่ branch Fame
+ดู source code โปรเจค furrever ได้ที่ branch **Fame**
 
-หรือ
+*หรือ*
 ```
 https://github.com/baebey/furrever/tree/Fame
 ```
