@@ -5,8 +5,11 @@ import React from "react";
 import { AntDesign } from "@expo/vector-icons";
 
 // Component
-const postLostPet = (props) => {
+const postLostPet = (  props) => {
   const navigation = props.navigation;
+  console.log( props );
+// {"name": "แซลม่อน", "onSelect": [Function onSelect], "pic": "https://sdfebp&quality=lossless", "sex": undefined, "tel": undefined, "type": "หมา", "year": undefined}
+
 
   return (
     <TouchableOpacity

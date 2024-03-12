@@ -124,8 +124,8 @@ export default function NewHouse() {
         {...props}
         activeColor={'black'}
         inactiveColor={'white'}
-        indicatorContainerStyle={{backgroundColor:"#e2cc9b"}}
-        indicatorStyle={{backgroundColor:'#bad36d', height:"10%"}}
+        indicatorContainerStyle={{backgroundColor:"#bad36d"}}
+        indicatorStyle={{backgroundColor:'#faaf6b', height:"10%"}}
     />
   );
 

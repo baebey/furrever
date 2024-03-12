@@ -1,21 +1,71 @@
-## หลังจาก Load Branch
+<h1 align="center">Furrevert<img src="https://i.kym-cdn.com/photos/images/original/000/869/057/613.gif" width="70px"></h1>
+<p align="center">
+<em>
+ รวบรวมการสื่อสารของคนที่มีจุดประสงค์เหมือนกันไว้ด้วยกัน โดยเฉพาะคนที่ชอบเลี้ยงสัตว์จำพวกหมาและแมว ไว้เป็นเครือข่ายของกลุ่มคนที่มีการแลกเปลี่ยนข้อมูล เช่น การหาที่อยู่ใหม่กับสัตว์เลี้ยง ในส่วนนี้ก็สามารถพูดคุยกันในแอป, การตามหาสัตว์เลี้ยงที่หาย ก็สามารถให้คนที่พบเห็นกรอกข้อมูลรายละเอียดต่างๆลงในแอปแล้วเจ้าของที่ตามหาก็สามารถแสกนข้อมูลเพื่อรับรู้ที่อยู่ของสัตว์เลี้ยงได้ ซึ่งแอปพลิเคชันจะมาแทนการแก้ปัญหาแบบเดิมๆที่ค่อยเดินถามตามบ้านหรือการแปะป้ายประกาศตามหาสัตว์เลี้ยง ซึ่งการมาของแอปพลิเคชั่นนี้จะช่วยให้ผู้คนที่สนใจหมากับแมวมารวมตัวกัน และเกิดกิจกรรมต่างๆทั้งการช่วยเหลือและการแชร์ประสบการณ์ดีๆต่อกัน
+</em>
+</p>
+
+
+
+## หลังจาก Load Branch (ใช้กรณี Clone code หรือ แตก Branch จาก Branch นี้)
 ```JS
 npm install
 npx react-native start --reset-cache
 npx expo start
 ```
 
+## Git Command นำ Branch ไป Dev 
+```js
+git init
+git remote add origin https://github.com/baebey/furrever.git
+git checkout -b ชื่อ
+git add .
+git commit -m "first commit"
+git push -u origin ชื่อ
+```
 
-## ลงเพิ่ม
+---
+
+## คำสั่ง สร้าง Project
+```JS
+npx create-expo-app FurreverProject
+cd FurreverProject
+```
+
+## Library ที่ ลงทั้งหมด
 ```JS
 npm install deprecated-react-native-prop-types
 npm install react-native-tab-view 
 npm install @react-native-community/datetimepicker
 npx expo install @react-native-community/datetimepicker
 npm install firebase
-npm install --save redux react-redux 
+npm install --save redux react-redux
+npm i react-native-gesture-handler
+npm install --save react-native-snap-carousel
+npm install react-native-paper
+npm install @react-navigation/bottom-tabs
+npm install react-navigation-header-buttons
+npm i @react-native-community/datetimepicker
+npm i react-native-dropdown-select-list
+npx expo install expo-image-picker
+npm install react-native-gesture-handler
+npm install react-native-vector-icons
+npm i @fortawesome/react-fontawesome
+npx expo install react-native-gesture-handler
+npm install react-native-gesture-handler@2.15.0
+npm i react-native-elements
 ```
 
+---
+
+## Figma
+https://www.figma.com/file/jSE3fPtlb9pBcdMRjIimGI/devtool?type=design&node-id=0%3A1&mode=design&t=Z6YfTn8XXL0z9DOq-1
+
+## Firebase
+https://console.firebase.google.com/u/0/project/furrever-2929/firestore/data/~2FUsers~2FJudas@gmail.com
+
+## Slide Present
+https://www.canva.com/design/DAF_HXarytE/BqnBs5Og3JfwRGQAz3Wy8g/edit?utm_content=DAF_HXarytE&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
 ---
 

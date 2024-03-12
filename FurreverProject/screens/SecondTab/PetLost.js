@@ -106,7 +106,7 @@ export default function PetLost({ navigation }) {
           navigation.navigate("LostPetDetails");
         }}
 // {"item": undefined, "name": undefined, "onSelect": [Function onSelect], "pic": "httpedia&token=b052f05e-23c1-4a22-9806-9084e31f7b1b", "sex": undefined, "tel": undefined, "type": "แมว", "year": undefined}
-        item = {item.items}
+        
         pic={item.pet_url}
         name={item.name}
         year={item.year}
