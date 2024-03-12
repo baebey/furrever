@@ -1,4 +1,4 @@
-<h1 align="center"> Furrevert <img src="https://64.media.tumblr.com/bddf272082ed5154a77b4848d0ec5860/c04d6a829dccf60c-20/s500x750/942a58e8fe62d4751c9eb06257f6536e68b47812.gif" width="100px"></h1>
+<h1 align="center"> Furrever <img src="https://64.media.tumblr.com/bddf272082ed5154a77b4848d0ec5860/c04d6a829dccf60c-20/s500x750/942a58e8fe62d4751c9eb06257f6536e68b47812.gif" width="100px"></h1>
 <p align="center" >
 <em>
  Community สำหรับกลุ่มคนที่เลี้ยงสัตว์จำพวกหมาและแมว ไว้เป็นเครือข่ายในการแลกเปลี่ยนข้อมูล และสำหรับโพสถามหาสัตว์ที่หายไป ซึ่งการมาของแอปพลิเคชั่นนี้จะช่วยให้ผู้คนที่สนใจหมากับแมวมารวมตัวกัน และเกิดกิจกรรมต่างๆทั้งการช่วยเหลือและการแชร์ประสบการณ์ดีๆต่อกัน
