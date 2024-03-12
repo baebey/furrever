@@ -153,8 +153,13 @@ const SecondTab = () => {
         <Stack.Navigator initialRouteName="Declare" screenOptions={{  headerTitleAlign: 'center', headerStyle: { backgroundColor: colors.mint } }}>
             <Stack.Screen name='Declare' component={Declare} />
             <Stack.Screen name='ScanScreen' component={ScanScreen} />
+
+            {/* หน้าหาบ้านใหม่ Adoption */}
             <Stack.Screen name='NewHouse' component={NewHouse} />
-            <Stack.Screen name='PetLost' component={PetLost} />
+
+            {/*  หน้าดูสัตว์เลี่้ยงที่หายไป */}
+            <Stack.Screen name='PetLost' component={PetLost} />   
+
             <Stack.Screen name='UploadPets' component={UploadPets} />
             <Stack.Screen name='LostPetDetails' component={LostPetDetails}  options={{headerShown:false}}  />
         </Stack.Navigator>
