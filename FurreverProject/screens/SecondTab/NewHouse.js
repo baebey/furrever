@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, SafeAreaView, ScrollView, StatusBar, useWindowDimensions , FlatList  } from "react-native";
-import { TabView, SceneMap } from 'react-native-tab-view';
+import { TabView,TabBar , SceneMap } from 'react-native-tab-view';
 
 
 // Import Components 
 import PostNewHouse from "../../components/postNewHouse";
 
-
+// Firebase
+import firebase from "../../firebase/firebaseDB";
 
 
 
@@ -25,13 +26,13 @@ const data = [
 const renderItem = ({ item }) => (
   <View style={{ borderBottomColor: 'purple', marginVertical: 10 }}>
     <PostNewHouse
-      pic={item.pic}
-      name={item.name}
-      year={item.year}
+      pic={item.ani_url}
+      name={item.ani_name}
+      year={item.age}
       type={item.type}
-      sex={item.sex}
-      detail={item.detail}
-      contact={item.contact}
+      sex={item.gender}
+      detail={item.txt}
+      contact={item.caretaker}
       tel={item.tel}
     />
   </View>
@@ -41,12 +42,12 @@ const renderItem = ({ item }) => (
 
 
 // ทำ Tab ด้านบน
-const FirstRoute = () => (
+const FirstRoute = (props) => (
   <SafeAreaView style={styles.containerSafe}>
     <ScrollView style={styles.scrollView}>
       <FlatList
       style={{paddingHorizontal:15}}
-        data={data}
+        data={props.item}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
       />
@@ -54,13 +55,13 @@ const FirstRoute = () => (
   </SafeAreaView>
 );
 
-const SecondRoute = () => (
+const SecondRoute = (props) => (
   <FlatList
-      style={{paddingHorizontal:15}}
-        data={data}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-      />
+  style={{paddingHorizontal:15}}
+    data={props.item}
+    renderItem={renderItem}
+    keyExtractor={(item) => item.id}
+  />
 );
 
 const renderScene = SceneMap({
@@ -77,6 +78,37 @@ const renderScene = SceneMap({
 export default function NewHouse() {
 
   const layout = useWindowDimensions();
+
+
+  const [listDog , setListDog] = useState([]);
+  const [listCat , setListCat] = useState([]);
+
+  const subjCollection = firebase.firestore().collection("Adoption");
+  const getCollection = (querySnapshot) => {
+      var copy_Dog_DB = []
+      var copy_Cat_DB = []
+
+      querySnapshot.forEach((res) => 
+      {
+        if(res.data().type == "หมา"){
+          copy_Dog_DB.push(res.data());
+        }
+        else{
+          copy_Cat_DB.push(res.data());
+        }
+      });
+      setListDog([...copy_Dog_DB]);
+      setListCat([...copy_Cat_DB]);
+    }
+    useEffect(() => {
+    //  ทำงานที่ควรทำหลังจาก component ถูกเรนเดอร์
+    const unsubscribe = subjCollection.onSnapshot(getCollection);
+    return () => {
+        unsubscribe();
+    };
+    }, []);
+
+
   
 
   const [index, setIndex] = React.useState(0);
@@ -85,12 +117,33 @@ export default function NewHouse() {
     { key: 'second', title: 'แมว' },
   ]);
 
+
+
+  const renderTabBar = props => (
+    <TabBar
+        {...props}
+        activeColor={'black'}
+        inactiveColor={'white'}
+        indicatorContainerStyle={{backgroundColor:"#e2cc9b"}}
+        indicatorStyle={{backgroundColor:'#bad36d', height:"10%"}}
+    />
+  );
+
   return (
     <TabView
       navigationState={{ index, routes }}
-      renderScene={renderScene}
+      // renderScene={renderScene}
+      renderScene={
+        // SceneMap = ฟังก์ชันที่ใช้สร้าง map ของ component ที่ควรแสดงในแต่ละ tab ของ TabView.
+        SceneMap({
+          first: () => <FirstRoute   navigation={navigation} item={listDog} />,
+          second: () => <SecondRoute navigation={navigation} item={listCat} /> ,
+        })
+      }
       onIndexChange={setIndex}
       initialLayout={{ width: layout.width }}
+      renderTabBar={renderTabBar}
+
     />
   );
 }

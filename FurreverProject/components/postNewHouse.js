@@ -1,5 +1,9 @@
+import React, { useEffect, useState } from 'react';
+
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
-import React from "react";
+
+// Firebase
+import firebase from "../firebase/firebaseDB";
 
 // Import Icon
 import { AntDesign } from "@expo/vector-icons";
@@ -15,6 +19,10 @@ const colors = {
 
 // Component
 const postLostPet = (props) => {
+  
+  
+
+
 
 
   return (
